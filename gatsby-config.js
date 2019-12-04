@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Amanda Iung`,
+    description: `Jornalista Freelancer`,
+    owner: `@amanda_iung`,
+    author: `Ítalo Iung`,
+    authorUrl: `https://italo.iung.me`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -18,15 +20,52 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Amanda Iung`,
+        short_name: `Amanda Iung`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
+        background_color: `#758387`,
+        theme_color: `#758387`,
+        display: `standalone`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        baseUrl: `localhost:8012/amanda.iung.admin`,
+        protocol: `http`,
+        hostingWPCOM: false,
+        useACF: false,
+        includedRoutes: [
+          "**/categories",
+          "**/posts",
+          "**/media",
+          "**/tags",
+          "**/taxonomies",
+          "**/services",
+          "**/pages"
+        ],
+      },
+    },
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Roboto Condensed`
+          },
+          {
+            family: `Comfortaa`
+          },
+          {
+            family: `Montserrat`
+          },
+        ]
+      }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

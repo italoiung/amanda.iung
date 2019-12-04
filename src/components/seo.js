@@ -18,7 +18,7 @@ function SEO({ description, lang, meta, title }) {
           siteMetadata {
             title
             description
-            author
+            owner
           }
         }
       }
@@ -57,7 +57,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.owner,
         },
         {
           name: `twitter:title`,
@@ -73,7 +73,7 @@ function SEO({ description, lang, meta, title }) {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: `pt`,
   meta: [],
   description: ``,
 }
@@ -82,7 +82,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }
 
 export default SEO
