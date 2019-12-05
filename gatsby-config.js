@@ -43,7 +43,8 @@ module.exports = {
           "**/tags",
           "**/taxonomies",
           "**/services",
-          "**/pages"
+          "**/pages",
+          "**/menus"
         ],
       },
     },

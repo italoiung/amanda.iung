@@ -1,0 +1,87 @@
+main {
+    .flex-section {
+        &.flex-section--blog {
+            .flex-section--blog__featured {
+                @include sm {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                }
+
+                a {
+                    display: block;
+                    overflow: hidden;
+
+                    margin-bottom: 30px;
+
+                    @include on-event {
+                        article {
+                            figure{
+                                transform: scale(1.25, 1.25);
+                            }
+                        }
+                    }
+
+                    article {
+                        position: relative;
+
+                        figure {
+                            transition: .7s transform;
+
+                            > div {
+                                @include sm {
+                                    width: 47vw !important;
+                                    height: 47vw !important;
+                                }
+                                @include xl {
+                                    width: 375px !important;
+                                    height: 375px !important;
+                                }
+                            }
+                        }
+
+                        figure:before {
+                            content: "";
+
+                            position: absolute;
+                            display: block;
+                            z-index: 1;
+
+                            width: 100%;
+                            height: 100%;
+
+                            background-color: rgba($color: $dark-grey, $alpha: 0.3);
+                        }
+
+                        .flex-section--blog__featured__post-meta {
+                            position: absolute;
+                            z-index: 2;
+                            bottom: 60px;
+                            left: 0;
+                            right: 30px;
+                            display: flex;
+                            justify-content: center;
+                            flex-flow: column;
+
+                            background-color: rgba($color: $text-primary, $alpha: 0.75);
+                            color: $dark-grey;
+
+                            padding: 1rem 0 1rem 1rem;
+
+                            time {
+                                @include fontSize(20);
+                            }
+
+                            div {
+                                @include fontSize(20);
+                                font-family: $font-items;
+                                font-weight: 900;
+                                letter-spacing: 1.5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,85 @@
+main {
+    .flex-section {
+        &.flex-section--service {
+            justify-content: flex-end;
+
+            .flex-section--service__content {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 0;
+                z-index: 1;
+
+                width: 100%;
+                max-width: 320px;
+                padding: 1rem;
+                
+                background-color: rgba($color: $dark-grey, $alpha: 0.75);
+                
+                @include md {
+                    top: 160px;
+                    transform: none;
+
+                    max-width: 310px;
+                    padding: 0;
+
+                    background-color: transparent;
+                }
+
+                h2 {
+                    @include fontSize(28);
+                    font-weight: 900;
+                }
+
+                p {
+                    color: $text-secondary;
+
+                    font-style: italic;
+                    
+                    padding-right: 2rem;
+                }
+            }
+
+            .flex-section--service__image {
+                background-color: $dark-blue;
+
+                figure {
+                    opacity: 0.75;
+                    box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.9);
+                }
+
+                padding: 1rem 1.5rem;
+
+                @include sm {
+                    padding: 2rem 3rem;
+                }
+
+                @include xl {
+                    padding: 4rem 6rem;
+                }
+            }
+
+            &:nth-child(even) {
+                justify-content: flex-start;
+
+                .flex-section--service__content {
+                    left: initial;
+                    right: 0;
+
+                    text-align: right;
+
+                    p {
+                        padding-right: 0;
+                        padding-left: 2rem;
+                    }
+                }
+
+                .flex-section--service__image {
+                    figure {
+                        box-shadow: -10px 10px 15px 5px rgba(0, 0, 0, 0.9);
+                    }
+                }
+            }
+        }
+    }
+}

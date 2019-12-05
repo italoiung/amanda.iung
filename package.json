@@ -22,8 +22,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "react-html-parser": "^2.0.2",
-    "rfs": "^9.0.2"
+    "react-html-parser": "^2.0.2"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
@@ -35,6 +34,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "develop-m": "gatsby develop -H 192.168.0.108 -p 8000",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",

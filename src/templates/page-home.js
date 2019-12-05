@@ -18,21 +18,21 @@ const HomePage = ({ data }) => {
     return (
         <Layout>
             <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} />
-            <section className="flex-section main-section">
-                <div className="main-section__content">{parser(page.content)}</div>
-                <div className="main-section__image">
+            <section className="flex-section flex-section--main">
+                <div className="flex-section--main__content">{parser(page.content)}</div>
+                <div className="flex-section--main__image">
                     <figure>
                         <Img alt={page.featured_media.alt_text} fixed={page.featured_media.localFile.childImageSharp.fixed} />
                     </figure>
                 </div>
             </section>
             <Services />
-            <section>
+            <section className="flex-section flex-section--blog">
                 <h2>Últimas Postagens</h2>
-                <div>
+                <div className="flex-section--blog__recent">
                     <RecentPosts />
                 </div>
-                <div>
+                <div className="flex-section--blog__featured">
                     <FeaturedPosts />
                 </div>
             </section>
@@ -58,8 +58,8 @@ export const pageQuery = graphql`
             alt_text
             localFile {
                 childImageSharp {
-                    fixed(width: 960, height: 500) {
-                        ...GatsbyImageSharpFixed_withWebp
+                    fixed(width: 960, height: 500, quality: 100) {
+                        ...GatsbyImageSharpFixed_withWebp_tracedSVG
                     }
                 }
             }

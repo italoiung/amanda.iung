@@ -17,8 +17,8 @@ const Services = () => {
                             alt_text
                             localFile {
                                 childImageSharp {
-                                    fixed(width: 960, height: 580) {
-                                        ...GatsbyImageSharpFixed_withWebp
+                                    fixed(width: 720, height: 435, quality: 100) {
+                                        ...GatsbyImageSharpFixed_withWebp_tracedSVG
                                     }
                                 }
                             }
@@ -31,12 +31,12 @@ const Services = () => {
 
     const { allWordpressWpServices } = data
     const services = allWordpressWpServices.edges.map(service =>
-        <section className="flex-section services" key={service.node.id}>
-            <div>
-                <Link to={"/services/" + service.node.slug}><h2>{service.node.title}</h2></Link>
+        <section className="flex-section flex-section--service" key={service.node.id}>
+            <div className="flex-section--service__content">
+            <h2><Link to={"/services/" + service.node.slug}>{service.node.title}</Link></h2>
                 {parser(service.node.excerpt)}
             </div>
-            <div>
+            <div className="flex-section--service__image">
                 <figure>
                     <Img alt={service.node.featured_media.alt_text} fixed={service.node.featured_media.localFile.childImageSharp.fixed} />
                 </figure>

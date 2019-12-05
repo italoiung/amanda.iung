@@ -16,7 +16,7 @@ const FeaturedPosts = () => {
                             alt_text
                             localFile {
                                 childImageSharp {
-                                    fixed(width: 576, height: 576) {
+                                    fixed(width: 575, height: 575) {
                                         ...GatsbyImageSharpFixed_withWebp
                                     }
                                 }
@@ -35,22 +35,23 @@ const FeaturedPosts = () => {
     const { allWordpressPost } = data
     const posts = allWordpressPost.edges.map(post => {
         let categories = post.node.categories.map(categorie =>
-            <Link key={categorie.id + "-" + post.node.id + "-recent"} to={"/categorias/" + categorie.slug}>{categorie.name}</Link>
+            <span key={categorie.id + "-" + post.node.id + "-featured"} to={"/categorias/" + categorie.slug}>{categorie.name}</span>
         )
         return (
-            <article key={post.node.id + "-recent"}>
-                <figure>
-                    <Img alt={post.node.featured_media.alt_text} fixed={post.node.featured_media.localFile.childImageSharp.fixed} />
-                </figure>
-                <div>
-                    <time>{post.node.date}</time>
-                    <div>
-                        {categories}
+            <Link key={post.node.id + "-featured"} to={"/blog/" + post.node.slug}>
+                <article>
+                    <figure>
+                        <Img alt={post.node.featured_media.alt_text} fixed={post.node.featured_media.localFile.childImageSharp.fixed} style={{maxHeight: "100vw"}} />
+                    </figure>
+                    <div className="flex-section--blog__featured__post-meta">
+                        <time>{post.node.date}</time>
+                        <div>
+                            {categories}
+                        </div>
+                        <h3>{post.node.title}</h3>
                     </div>
-                    <h3>{post.node.title}</h3>
-                    <Link to={"/blog/" + post.node.slug}>Ler Mais</Link>
-                </div>
-            </article>
+                </article>
+            </Link>
         )
     })
 
