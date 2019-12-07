@@ -1,7 +1,7 @@
 main {
-    .flex-section {
-        &.flex-section--blog {
-            .flex-section--blog__featured {
+    .FlexSection {
+        &.FlexSection___blog {
+            .FlexSection___blog_featured {
                 @include sm {
                     display: flex;
                     flex-wrap: wrap;
@@ -53,7 +53,7 @@ main {
                             background-color: rgba($color: $dark-grey, $alpha: 0.3);
                         }
 
-                        .flex-section--blog__featured__post-meta {
+                        .FlexSection___blog_featured_postMeta {
                             position: absolute;
                             z-index: 2;
                             bottom: 60px;

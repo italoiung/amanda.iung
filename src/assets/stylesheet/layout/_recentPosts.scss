@@ -1,10 +1,11 @@
-$sm-xl-figure-size: 240px !default;
+$sm-figure-size: 240px !default;
 $md-figure-size: 375px !default;
+$xl-figure-size: 240px !default;
 
 main {
-    .flex-section {
-        &.flex-section--blog {
-            .flex-section--blog__recent {
+    .FlexSection {
+        &.FlexSection___blog {
+            .FlexSection___blog_recent {
                 article {
                     display: grid;
                     align-items: center;
@@ -12,7 +13,7 @@ main {
                     margin-bottom: 30px;
                     
                     @include sm {
-                        grid-template-columns: $sm-xl-figure-size 1fr;
+                        grid-template-columns: $sm-figure-size 1fr;
                     }
                     
                     @include md {
@@ -20,7 +21,7 @@ main {
                     }
                     
                     @include xl {
-                        grid-template-columns: $sm-xl-figure-size 1fr;
+                        grid-template-columns: $xl-figure-size 1fr;
                     }
 
                     &:hover {
@@ -36,7 +37,7 @@ main {
                             transition: 0.7s transform;
                             
                             @include sm {
-                                height: $sm-xl-figure-size !important;
+                                height: $sm-figure-size !important;
                             }
 
                             @include md {
@@ -44,7 +45,7 @@ main {
                             }
 
                             @include xl {
-                                height: $sm-xl-figure-size !important;
+                                height: $xl-figure-size !important;
                             }
                         }
                     }
@@ -62,7 +63,7 @@ main {
                         background-color: rgba($color: $dark-grey, $alpha: 0.3);
                     }
 
-                    .flex-section--blog__recent__post-meta {
+                    .FlexSection___blog_recent_postMeta {
                         padding: 1rem 1.8rem;
 
                         time {
@@ -83,7 +84,7 @@ main {
                             @include fontSize(26);
                         }
 
-                        .flex-section--blog__recent__post-meta__read-more {
+                        .FlexSection___blog_recent_postMeta_readMore {
                             display: block;
 
                             @include fontSize(18);

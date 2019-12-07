@@ -40,12 +40,12 @@ h6 {
 
 a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline transparent;
 
     transition: .3s all;
 
     @include on-event {
-        text-decoration: underline;
+        text-decoration: underline $highlight-blue;
         color: $text-secondary;
     }
 }

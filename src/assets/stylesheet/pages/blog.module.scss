@@ -1,0 +1,47 @@
+@import "../base";
+@import "../layout";
+$xl-figure-size: 350px;
+@import "../layout/recentPosts";
+
+
+main {
+    .FlexSection {
+        margin-top: 70px;
+
+        &.FlexSection___blog {
+            .FlexSection___blog_recent {
+                @include xl {
+                    article {
+                        width: ($max-width - ($xl-figure-size / 2));
+                        display: flex;
+
+                        figure {
+                            flex: 1 0 $xl-figure-size;
+                        }
+
+                        &:nth-child(even) {
+                            flex-direction: row-reverse;
+                            margin-left: auto;
+                        }
+                    }
+                }
+            }
+            .FlexSection___blog_nav {
+                display: flex;
+
+                .FlexSection___blog_nav_item {
+                    flex: 1 1 auto;
+
+                    @include fontSize(23);
+                    text-transform: lowercase;
+                    font-family: $font-heading;
+                    font-weight: 700;
+
+                    &.FlexSection___blog_nav_item___next {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
+import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import parser from 'react-html-parser'
 
-const Services = () => {
+
+const Services = ({ style }) => {
     const data = useStaticQuery(graphql`
         query Services {
             allWordpressWpServices {
@@ -31,12 +33,12 @@ const Services = () => {
 
     const { allWordpressWpServices } = data
     const services = allWordpressWpServices.edges.map(service =>
-        <section className="flex-section flex-section--service" key={service.node.id}>
-            <div className="flex-section--service__content">
-            <h2><Link to={"/services/" + service.node.slug}>{service.node.title}</Link></h2>
+        <section className={`${style.FlexSection} ${style.FlexSection___service}`} key={service.node.id}>
+            <div className={style.FlexSection___service_content}>
+                <h2><Link to={"/services/" + service.node.slug}>{service.node.title}</Link></h2>
                 {parser(service.node.excerpt)}
             </div>
-            <div className="flex-section--service__image">
+            <div className={style.FlexSection___service_image}>
                 <figure>
                     <Img alt={service.node.featured_media.alt_text} fixed={service.node.featured_media.localFile.childImageSharp.fixed} />
                 </figure>
@@ -44,6 +46,10 @@ const Services = () => {
         </section>
     )
     return services
+}
+
+Services.propTypes = {
+    style: PropTypes.object.isRequired
 }
 
 export default Services

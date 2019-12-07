@@ -1,15 +1,10 @@
 const path = require('path')
 const { paginate } = require('gatsby-awesome-pagination')
 
-// Implement the Gatsby API “createPages”. This is
-// called after the Gatsby bootstrap is finished so you have
-// access to any information necessary to programmatically
-// create pages.
-// Will create pages for WordPress posts (route : /blog/{slug})
-// Will create pages for WordPress projects (route : /projects/{slug})
+// Querying everything that will use specific templates and assigning it
 exports.createPages = async ({ graphql, actions }) => {
-    const { createPage } = actions
-    const posts = await graphql(`
+  const { createPage } = actions
+  const posts = await graphql(`
     {
       allWordpressPost {
         edges {
@@ -17,6 +12,12 @@ exports.createPages = async ({ graphql, actions }) => {
             id
             slug
             status
+            categories {
+              slug
+            }
+            tags {
+              slug
+            }
           }
         }
       }
@@ -41,7 +42,6 @@ exports.createPages = async ({ graphql, actions }) => {
       allWordpressCategory(filter: { count: { gt: 0 } }) {
         edges {
           node {
-            id
             name
             slug
           }
@@ -50,7 +50,6 @@ exports.createPages = async ({ graphql, actions }) => {
       allWordpressTag(filter: { count: { gt: 0 } }) {
         edges {
           node {
-            id
             name
             slug
           }
@@ -59,80 +58,103 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-    // Check for any errors
-    if (posts.errors) {
-        throw new Error(posts.errors)
+  // Check for any errors
+  if (posts.errors) {
+    throw new Error(posts.errors)
+  }
+
+  // Access query posts via object destructuring
+  const { allWordpressPost } = posts.data
+  const { allWordpressCategory } = posts.data
+  const { allWordpressTag } = posts.data
+  const { allWordpressPage } = posts.data
+  const { allWordpressWpServices } = posts.data
+
+  // Create page for each published posts and inserting them into an array
+  const publishedPosts = []
+  allWordpressPost.edges.forEach(edge => {
+    if (edge.node.status === 'publish') {
+      publishedPosts.push(edge)
+      createPage({
+        path: `/blog/${edge.node.slug}/`,
+        component: path.resolve(`./src/templates/post.js`),
+        context: {
+          id: edge.node.id
+        },
+      })
     }
+  })
 
-    // Access query posts via object destructuring
-    const { allWordpressPost } = posts.data
-    const { allWordpressCategory } = posts.data
-    const { allWordpressTag } = posts.data
-    const { allWordpressPage } = posts.data
-    const { allWordpressWpServices } = posts.data
+  // Create paginated archive page
+  paginate({
+    createPage,
+    items: publishedPosts,
+    itemsPerPage: 4,
+    pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog` : `/blog/page`),
+    component: path.resolve(`./src/templates/blog.js`)
+  })
 
-    // We want to create a detailed page for each
-    // post node. We'll just use the WordPress Slug for the slug.
-    // The Post ID is prefixed with 'POST_'
-    const publishedPosts = []
-    allWordpressPost.edges.forEach(edge => {
-        if (edge.node.status === 'publish') {
-            publishedPosts.push(edge)
-            createPage({
-                path: `/blog/${edge.node.slug}/`,
-                component: path.resolve(`./src/templates/post.js`),
-                context: {
-                    id: edge.node.id
-                },
-            })
-        }
-    })
+  allWordpressCategory.edges.forEach(edge => {
+    // Filter array of published posts with given category slug
+    let objectFilter = { slug: edge.node.slug }
+    let filteredPosts = publishedPosts.filter(post => post.node.categories.includes(objectFilter))
+    console.log(filteredPosts)
+
+    // Create paginated page for each category
     paginate({
-        createPage,
-        items: publishedPosts,
-        itemsPerPage: 10,
-        pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog` : `/blog/page`),
-        component: path.resolve(`./src/templates/blog.js`)
+      createPage,
+      items: filteredPosts,
+      itemsPerPage: 3,
+      pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog/categoria/${edge.node.slug}` : `/blog/categoria/${edge.node.slug}/page`),
+      component: path.resolve(`./src/templates/category.js`),
+      context: {
+        name: edge.node.name,
+        slug: edge.node.slug
+      }
     })
-    allWordpressCategory.edges.forEach(edge => {
-        createPage({
-            path: `/blog/categoria/${edge.node.slug}/`,
-            component: path.resolve(`./src/templates/category.js`),
-            context: {
-                name: edge.node.name,
-                slug: edge.node.name
-            }
-        })
+  })
+
+  allWordpressTag.edges.forEach(edge => {
+    // Filter array of published posts with given tag slug
+    let objectFilter = { slug: edge.node.slug }
+    let filteredPosts = publishedPosts.filter(post => post.node.tags.includes(objectFilter))
+    console.log(filteredPosts)
+
+    // Create paginated page for each tag
+    paginate({
+      createPage,
+      items: filteredPosts,
+      itemsPerPage: 3,
+      pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog/tag/${edge.node.slug}` : `/blog/tag/${edge.node.slug}/page`),
+      component: path.resolve(`./src/templates/tag.js`),
+      context: {
+        name: edge.node.name,
+        slug: edge.node.slug
+      }
     })
-    allWordpressTag.edges.forEach(edge => {
-        createPage({
-            path: `/blog/tag/${edge.node.slug}/`,
-            component: path.resolve(`./src/templates/tag.js`),
-            context: {
-                name: edge.node.name,
-                slug: edge.node.name
-            }
-        })
-    })
-    allWordpressPage.edges.forEach(edge => {
-        const localPath = edge.node.slug === 'home' ? `/` : `/${edge.node.slug}`
-        if (edge.node.status === 'publish')
-            createPage({
-                path: localPath,
-                component: path.resolve(`./src/templates/page-${edge.node.slug}.js`),
-                context: {
-                    id: edge.node.id
-                },
-            })
-    })
-    allWordpressWpServices.edges.forEach(edge => {
-        if (edge.node.status === 'publish')
-            createPage({
-                path: `/services/${edge.node.slug}/`,
-                component: path.resolve(`./src/templates/service.js`),
-                context: {
-                    id: edge.node.id,
-                },
-            })
-    })
+  })
+
+  // Creating pages for wordpress pages which are already known to exist
+  allWordpressPage.edges.forEach(edge => {
+    const localPath = edge.node.slug === 'home' ? `/` : `/${edge.node.slug}`
+    if (edge.node.status === 'publish')
+      createPage({
+        path: localPath,
+        component: path.resolve(`./src/templates/page-${edge.node.slug}.js`),
+        context: {
+          id: edge.node.id
+        },
+      })
+  })
+
+  allWordpressWpServices.edges.forEach(edge => {
+    if (edge.node.status === 'publish')
+      createPage({
+        path: `/services/${edge.node.slug}/`,
+        component: path.resolve(`./src/templates/service.js`),
+        context: {
+          id: edge.node.id,
+        },
+      })
+  })
 }

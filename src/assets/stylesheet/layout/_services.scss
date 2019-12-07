@@ -1,9 +1,9 @@
 main {
-    .flex-section {
-        &.flex-section--service {
+    .FlexSection {
+        &.FlexSection___service {
             justify-content: flex-end;
 
-            .flex-section--service__content {
+            .FlexSection___service_content {
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
@@ -40,7 +40,7 @@ main {
                 }
             }
 
-            .flex-section--service__image {
+            .FlexSection___service_image {
                 background-color: $dark-blue;
 
                 figure {
@@ -62,7 +62,7 @@ main {
             &:nth-child(even) {
                 justify-content: flex-start;
 
-                .flex-section--service__content {
+                .FlexSection___service_content {
                     left: initial;
                     right: 0;
 
@@ -74,7 +74,7 @@ main {
                     }
                 }
 
-                .flex-section--service__image {
+                .FlexSection___service_image {
                     figure {
                         box-shadow: -10px 10px 15px 5px rgba(0, 0, 0, 0.9);
                     }

@@ -4,12 +4,18 @@
 @import "../layout/recentPosts";
 @import "../layout/featuredPosts";
 
+header {
+    @include rwd(1052) {
+        padding: 25px 0 50px 0;
+    }
+}
+
 main {
-    .flex-section {
+    .FlexSection {
         display: flex;
         flex-wrap: wrap;
 
-        &.flex-section--main {
+        &.FlexSection___main {
             align-items: center;
 
             height: 500px;
@@ -18,7 +24,7 @@ main {
                 height: 425px;
             }
 
-            .flex-section--main__content {
+            .FlexSection___main_content {
                 z-index: 2;
 
                 width: 580px;
@@ -37,7 +43,7 @@ main {
                 }
             }
 
-            .flex-section--main__image {
+            .FlexSection___main_image {
                 position: absolute;
                 bottom: 0;
                 right: 0;
@@ -58,7 +64,7 @@ main {
             }
         } 
 
-        &.flex-section--blog {
+        &.FlexSection___blog {
             h2 {
                 @include fluid-type(320px, 1152px, 32px, 48px);
                 font-weight: 900;           
@@ -68,7 +74,7 @@ main {
                 margin: 30px 0 70px 0;
             }
 
-            .flex-section--blog__recent {
+            .FlexSection___blog_recent {
                 width: 100%;
 
                 @include xl {
@@ -76,7 +82,7 @@ main {
                 }
             }
 
-            .flex-section--blog__featured {
+            .FlexSection___blog_featured {
                 width: 100%;
                 
                 @include xl {

@@ -10,30 +10,30 @@ import Services from '../components/services'
 import RecentPosts from '../components/recentPosts'
 import FeaturedPosts from '../components/featuredPosts'
 
-import '../assets/stylesheet/pages/home.scss'
+import style from '../assets/stylesheet/pages/home.module.scss'
 
 const HomePage = ({ data }) => {
-    const { wordpressPage: page } = data
+    const { wordpressPage: page, allWordpressPost: dataRecentPosts } = data
 
     return (
         <Layout>
             <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} />
-            <section className="flex-section flex-section--main">
-                <div className="flex-section--main__content">{parser(page.content)}</div>
-                <div className="flex-section--main__image">
+            <section className={`${style.FlexSection} ${style.FlexSection___main}`}>
+                <div className={style.FlexSection___main_content}>{parser(page.content)}</div>
+                <div className={style.FlexSection___main_image}>
                     <figure>
                         <Img alt={page.featured_media.alt_text} fixed={page.featured_media.localFile.childImageSharp.fixed} />
                     </figure>
                 </div>
             </section>
-            <Services />
-            <section className="flex-section flex-section--blog">
+            <Services style={style} />
+            <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
                 <h2>Últimas Postagens</h2>
-                <div className="flex-section--blog__recent">
-                    <RecentPosts />
+                <div className={style.FlexSection___blog_recent}>
+                    <RecentPosts data={dataRecentPosts} style={style} />
                 </div>
-                <div className="flex-section--blog__featured">
-                    <FeaturedPosts />
+                <div className={style.FlexSection___blog_featured}>
+                    <FeaturedPosts style={style} />
                 </div>
             </section>
         </Layout>
@@ -47,7 +47,7 @@ HomePage.propTypes = {
 export default HomePage
 
 export const pageQuery = graphql`
-    query PageById($id: String!) {
+    query PageByIdAndRecentPosts($id: String!) {
         wordpressPage(id: { eq: $id }) {
         content
         yoast_meta {
@@ -61,6 +61,31 @@ export const pageQuery = graphql`
                     fixed(width: 960, height: 500, quality: 100) {
                         ...GatsbyImageSharpFixed_withWebp_tracedSVG
                     }
+                }
+            }
+        }
+    }
+    allWordpressPost(filter: {status: {eq: "publish"}}, limit: 3) {
+        edges {
+            node {
+                id
+                title
+                slug
+                date(formatString: "DD/MM/YYYY")
+                featured_media {
+                    alt_text
+                    localFile {
+                        childImageSharp {
+                            fixed(width: 576, height: 576) {
+                                ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                            }
+                        }
+                    }
+                }
+                categories {
+                    id
+                    slug
+                    name
                 }
             }
         }

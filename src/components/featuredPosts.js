@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import PropTypes from 'prop-types'
 
-const FeaturedPosts = () => {
+const FeaturedPosts = ({ style }) => {
     const data = useStaticQuery(graphql`
         query FeaturedPosts {
             allWordpressPost(filter: {status: {eq: "publish"}, meta: {meta_checkbox: {eq: "yes"}}}, limit: 2) {
@@ -35,15 +36,15 @@ const FeaturedPosts = () => {
     const { allWordpressPost } = data
     const posts = allWordpressPost.edges.map(post => {
         let categories = post.node.categories.map(categorie =>
-            <span key={categorie.id + "-" + post.node.id + "-featured"} to={"/categorias/" + categorie.slug}>{categorie.name}</span>
+            <span key={categorie.id + "-" + post.node.id + "-featured"}>{categorie.name}</span>
         )
         return (
             <Link key={post.node.id + "-featured"} to={"/blog/" + post.node.slug}>
                 <article>
                     <figure>
-                        <Img alt={post.node.featured_media.alt_text} fixed={post.node.featured_media.localFile.childImageSharp.fixed} style={{maxHeight: "100vw"}} />
+                        <Img alt={post.node.featured_media.alt_text} fixed={post.node.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: "100vw" }} />
                     </figure>
-                    <div className="flex-section--blog__featured__post-meta">
+                    <div className={style.FlexSection___blog_featured_postMeta}>
                         <time>{post.node.date}</time>
                         <div>
                             {categories}
@@ -56,6 +57,10 @@ const FeaturedPosts = () => {
     })
 
     return posts
+}
+
+FeaturedPosts.propTypes = {
+    style: PropTypes.object.isRequired
 }
 
 export default FeaturedPosts
