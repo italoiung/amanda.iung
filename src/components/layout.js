@@ -5,14 +5,14 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { Fragment } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import Footer from "./footer"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, style }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -26,11 +26,11 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+    <Fragment>
+      <Header siteTitle={data.site.siteMetadata.title} style={style} />
       <main>{children}</main>
-      <Footer author={data.site.siteMetadata.author} authorUrl={data.site.siteMetadata.authorUrl} />
-    </>
+      <Footer author={data.site.siteMetadata.author} authorUrl={data.site.siteMetadata.authorUrl} style={style} />
+    </Fragment>
   )
 }
 

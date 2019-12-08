@@ -1,4 +1,4 @@
-footer {
+footer.Footer {
     max-width: $max-width;
     background-color: $dark-grey;
 
@@ -45,6 +45,8 @@ footer {
         font-family: $font-items;
         font-weight: 300;
         text-align: center;
+
+        margin: 0;
         
         br {
             display: none;

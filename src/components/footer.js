@@ -2,7 +2,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from "prop-types"
 import React from "react"
 
-const Footer = ({ authorUrl, author }) => {
+const Footer = ({ authorUrl, author, style }) => {
     const data = useStaticQuery(graphql`
     query {
         allWordpressWpApiMenusMenusItems(filter: { slug: { eq: "footer" } }) {
@@ -27,7 +27,7 @@ const Footer = ({ authorUrl, author }) => {
     )
 
     return (
-        <footer>
+        <footer className={style.Footer}>
             <ul>
                 {menuItems}
             </ul>
@@ -38,10 +38,12 @@ const Footer = ({ authorUrl, author }) => {
 
 Footer.propTypes = {
     authorUrl: PropTypes.string,
+    author: PropTypes.string,
 }
 
 Footer.defaultProps = {
     authorUrl: ``,
+    author: `Ítalo Iung`
 }
 
 export default Footer

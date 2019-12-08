@@ -1,0 +1,97 @@
+@import "../base";
+@import "../layout";
+
+main {
+    section.MainSection {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        margin: 70px 0;
+
+        @include md {
+            flex-direction: row;
+        }
+
+        .MainSection_content {
+            text-align: center;
+
+            margin-top: 35px;
+
+            h2 {
+                @include fluid-type(320px, 1152px, 30px, 42px);
+            }
+
+            h3 {
+                @include fluid-type(320px, 1152px, 28px, 36px);
+                font-family: $font-items;
+                font-weight: 300;
+
+                color: $text-secondary;
+            }
+
+            @include md {
+                text-align: right;
+
+                margin-top: 0;
+            }
+        }
+
+        .MainSection_image {
+            background-color: $dark-blue;
+
+            padding: 1rem 1.5rem;
+
+            @include lg {
+                padding: 2rem 3rem;
+            }
+
+            figure {
+                opacity: 0.75;
+                box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.9);
+
+                @include md {
+                    width: 350px;
+
+                    > div {
+                        max-height: 420px !important;
+                    }
+                }
+
+                @include lg {
+                    width: 420px;
+                }
+            }
+        }
+    }
+
+    section.SecondarySection {
+        padding: 0 1rem;
+
+        @include xl {
+            padding: 0;
+        }
+
+        h2 {
+            @include fontSize(40);
+
+            @include sm {
+                display: inline-block;
+            }
+        }
+
+        h3 {
+            @include fontSize(28);
+            font-family: $font-items;
+            font-weight: 300;
+
+            color: $text-secondary;
+
+            @include sm {
+                float: right;
+
+                margin-top: 0.5rem;
+            }
+        }
+    }
+}

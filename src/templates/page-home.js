@@ -16,7 +16,7 @@ const HomePage = ({ data }) => {
     const { wordpressPage: page, allWordpressPost: dataRecentPosts } = data
 
     return (
-        <Layout>
+        <Layout style={style}>
             <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} />
             <section className={`${style.FlexSection} ${style.FlexSection___main}`}>
                 <div className={style.FlexSection___main_content}>{parser(page.content)}</div>

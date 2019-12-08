@@ -12,7 +12,7 @@ const Blog = ({ data, pageContext }) => {
     const { previousPagePath, nextPagePath } = pageContext;
 
     return (
-        <Layout>
+        <Layout style={style}>
             <Seo title="Blog" description="Postagens de blog" />
             <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
                 <div className={style.FlexSection___blog_recent}>

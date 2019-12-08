@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Amanda Iung`,
     description: `Jornalista Freelancer`,
+    url: `https://amanda.iung.me`,
     owner: `@amanda_iung`,
     author: `Ítalo Iung`,
     authorUrl: `https://italo.iung.me`,

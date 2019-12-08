@@ -6,11 +6,96 @@ main {
     section {
         position: relative;
         margin-bottom: 70px;
+    }
 
-        figure {
+    figure {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+    }
+
+    article {
+        time {
+            display: inline-block;
+
+            margin-bottom: .5rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: bolder;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            @include fontSize(40);
+        }
+
+        h2 {
+            @include fontSize(32);
+        }
+
+        h3 {
+            @include fontSize(28);
+        }
+
+        h4 {
+            @include fontSize(24);
+        }
+
+        h5 {
+            @include fontSize(20);
+        }
+
+        h6 {
+            @include fontSize(16);
+        }
+
+        p {
+            margin-bottom: 0.75rem;
+        }
+
+        blockquote {
             position: relative;
-            display: flex;
-            overflow: hidden;
+        
+            padding: 0 1rem;
+        
+            color: $text-secondary;
+        
+            &:before {
+                content: "";
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+        
+                height: calc(100% + .75rem);
+                width: 5px;
+        
+                background-color: $highlight-blue;
+            }
+        }
+
+        ul, ol {
+            list-style: initial;
+            list-style-position: inside;
+
+            margin-bottom: .5rem;
+        }
+
+        ol {
+            list-style-type: decimal;
+        }
+
+        mark {
+            padding: .1rem .2rem;
+            color: $text-secondary;
+            background-color: $dark-grey;
         }
     }
 }

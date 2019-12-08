@@ -4,14 +4,14 @@
 @import "../layout/recentPosts";
 @import "../layout/featuredPosts";
 
-header {
+header.Header {
     @include rwd(1052) {
         padding: 25px 0 50px 0;
     }
 }
 
 main {
-    .FlexSection {
+    section.FlexSection {
         display: flex;
         flex-wrap: wrap;
 

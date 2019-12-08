@@ -10,10 +10,9 @@ import style from '../assets/stylesheet/pages/blog.module.scss'
 
 const Tag = ({ data, pageContext }) => {
     const { previousPagePath, nextPagePath, name } = pageContext;
-    console.log(pageContext)
 
     return (
-        <Layout>
+        <Layout style={style}>
             <Seo title={`Postagens na tag ${name}`} description={`Postagens do blog na tag ${name}`} />
             <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
                 <div className={style.FlexSection___blog_recent}>
