@@ -2,6 +2,7 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
+// Query and display header menu items
 const Header = ({ siteTitle, style }) => {
   const data = useStaticQuery(graphql`
     query {

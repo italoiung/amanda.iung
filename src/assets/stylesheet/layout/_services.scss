@@ -3,15 +3,17 @@ main {
         &.FlexSection___service {
             justify-content: flex-end;
 
-            @include on-event {
-                .FlexSection___service_image {
-                    figure {
-                        > a {
-                            width: 75%;
-                            height: 75%;
+            @include md {
+                @include on-event {
+                    .FlexSection___service_image {
+                        figure {
+                            > a {
+                                width: 75%;
+                                height: 75%;
 
-                            color: $text-primary;
-                            background-color: rgba($color: $dark-grey, $alpha: 0.75);
+                                color: $text-primary;
+                                background-color: rgba($color: $dark-grey, $alpha: 0.75);
+                            }
                         }
                     }
                 }
@@ -65,26 +67,34 @@ main {
 
                     > a {
                         position: absolute;
-                        top: 50%;
-                        left: 50%;
+                        bottom: 0;
                         z-index: 2;
                         display: flex;
                         align-items: center;
                         justify-content: center;
 
+                        width: 100%;
+                        
                         font-weight: 700;
                         letter-spacing: 1px;
                         font-family: $font-heading;
                         text-decoration: underline;
-
-                        height: 5%;
-                        width: 5%;
-
-                        color: transparent;
-                        background-color: transparent;
-
-                        transform: translate(-50%, -50%);
+                        
+                        color: $text-primary;
+                        background-color: rgba($color: $dark-grey, $alpha: 0.75);
                         transition: 0.5s all;
+
+                        @include md {
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+
+                            color: transparent;
+                            background-color: transparent;
+
+                            height: 5%;
+                            width: 5%;
+                        }
                     }
                 }
 

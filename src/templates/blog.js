@@ -8,6 +8,7 @@ import RecentPosts from '../components/recentPosts'
 
 import style from '../assets/stylesheet/pages/blog.module.scss'
 
+// Paginated blog archive
 const Blog = ({ data, pageContext }) => {
     const { previousPagePath, nextPagePath } = pageContext;
 

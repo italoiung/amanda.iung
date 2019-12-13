@@ -11,6 +11,7 @@ import {
     WhatsappIcon
 } from 'react-share';
 
+// Custom share component. Used with posts, services and works
 const Share = ({ socialConfig, tags, style }) => (
     <div className={style.Share}>
         <FacebookShareButton url={socialConfig.config.url} className={`${style.SocialIcon} ${style.SocialIcon___facebook}`} quote={socialConfig.config.title} >

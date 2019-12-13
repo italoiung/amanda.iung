@@ -2,6 +2,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from "prop-types"
 import React from "react"
 
+//Query and display footer menu items
 const Footer = ({ authorUrl, author, style }) => {
     const data = useStaticQuery(graphql`
     query {

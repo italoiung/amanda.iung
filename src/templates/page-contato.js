@@ -9,6 +9,7 @@ import Seo from '../components/seo'
 
 import style from '../assets/stylesheet/pages/contato.module.scss'
 
+// Contact page
 export default class Contato extends Component {
     state = {
         nome: "",

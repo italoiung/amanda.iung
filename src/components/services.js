@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import parser from 'react-html-parser'
 
-
+// Query and display services post type. Uses static query because it'll never have any filters
 const Services = ({ style }) => {
     const data = useStaticQuery(graphql`
         query Services {

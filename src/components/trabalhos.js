@@ -4,6 +4,7 @@ import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 import parser from 'react-html-parser'
 
+// Query and display trabalhos post type given certain data
 const Trabalhos = ({ data, style }) => {
     const trabalhos = data.edges.map(trabalho => {
         let alt = trabalho.node.featured_media.alt_text ? trabalho.node.featured_media.alt_text : trabalho.node.title

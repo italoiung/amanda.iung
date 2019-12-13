@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 
+// Query recent posts given certain data because it might have different filters
 const RecentPosts = ({ data, style }) => {
     const posts = data.edges.map(post => {
         let alt = post.node.featured_media.alt_text ? post.node.featured_media.alt_text : post.node.title

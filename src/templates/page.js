@@ -9,9 +9,10 @@ import Seo from '../components/seo'
 
 import style from '../assets/stylesheet/pages/page.module.scss'
 
+// Default page
 const Page = ({ data }) => {
     const { wordpressPage: page } = data
-    const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
+    const alt = page.featured_media && page.featured_media.alt_text ? page.featured_media.alt_text : page.title
 
     const image = page.featured_media ? 
     <div className={style.Page_pageImage}>

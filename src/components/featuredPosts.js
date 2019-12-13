@@ -3,6 +3,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 
+//Query and display featured posts
 const FeaturedPosts = ({ style }) => {
     const data = useStaticQuery(graphql`
         query FeaturedPosts {

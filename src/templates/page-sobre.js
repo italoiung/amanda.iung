@@ -9,6 +9,7 @@ import Seo from '../components/seo'
 
 import style from '../assets/stylesheet/pages/sobre.module.scss'
 
+// About page
 const Sobre = ({ data }) => {
     const { wordpressPage: page } = data
     const content = page.content.split("<p><!--more--></p>")
