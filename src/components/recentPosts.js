@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 const RecentPosts = ({ data, style }) => {
     const posts = data.edges.map(post => {
+        let alt = post.node.featured_media.alt_text ? post.node.featured_media.alt_text : post.node.title
         let categories = post.node.categories.map((categorie, index) =>
             <Fragment key={categorie.id + "-" + post.node.id + "-recent"}>
                 {(index ? ', ' : '')}<Link to={"/blog/categoria/" + categorie.slug}>{categorie.name}</Link>
@@ -13,7 +14,7 @@ const RecentPosts = ({ data, style }) => {
         return (
             <article key={post.node.id + "-recent"}>
                 <figure>
-                    <Img alt={post.node.featured_media.alt_text} fixed={post.node.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+                    <Img alt={alt} fixed={post.node.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
                 </figure>
                 <div className={style.FlexSection___blog_recent_postMeta}>
                     <time>{post.node.date}</time>

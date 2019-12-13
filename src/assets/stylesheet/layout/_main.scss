@@ -56,6 +56,7 @@ main {
         }
 
         p {
+            line-height: 1.25rem;
             margin-bottom: 0.75rem;
         }
 
@@ -97,5 +98,49 @@ main {
             color: $text-secondary;
             background-color: $dark-grey;
         }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        :global {
+            .alignright {
+                float: right;
+            }
+
+            .alignleft {
+                float: left;
+            }
+
+            .aligncenter {
+                margin: auto;
+            }
+            
+
+            .ye-container {
+                position: relative;
+
+                padding-top: 25px;
+                padding-bottom: 56.25%;
+                height: 0;
+
+                overflow: hidden;
+
+                .youtube-player {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    a {
+        text-decoration-color: rgba($color: $dark-blue, $alpha: 1.0);
     }
 }

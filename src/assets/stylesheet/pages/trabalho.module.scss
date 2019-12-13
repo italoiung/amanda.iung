@@ -9,47 +9,33 @@ header.Header {
 }
 
 main {
-    article.Post {
+    article.Trabalho {
         margin-bottom: 70px;
 
         header {
             position: relative;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            align-items: center;
 
             height: 500px;
-            width: 100%;
             margin-bottom: 35px;
 
             @include rwd(1052) {
                 height: 425px;
             }
 
-            .Post_postMeta {
+            .Trabalho_trabalhoMeta {
                 z-index: 2;
                 max-width: $max-width / 1.5;
-
-                time {
-                    @include fontSize(22);
-                    font-family: $font-items;
-                }
 
                 h2 {
                     @include fluid-type(320px, 1152px, 32px, 48px);
                     font-family: $font-heading;
                     font-weight: 900;
                 }
-
-                div {
-                    @include fontSize(24);
-                    font-family: $font-items;
-                    font-weight: 900;
-                    letter-spacing: 1.5px;
-                }
             }
 
-            .Post_postImage {
+            .Trabalho_trabalhoImage {
                 position: absolute;
                 bottom: 0;
                 right: 0;
@@ -77,22 +63,10 @@ main {
 
         footer {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
 
-            width: 100%;
             margin-top: 35px;
-
-            .Post_postTags {
-                @include fontSize(16);
-                font-family: $font-items;
-
-                a {
-                    @include fontSize(18);
-                    font-weight: 700;
-                    letter-spacing: 1.5px;
-                }
-            }
         }
     }
 }

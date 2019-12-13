@@ -9,11 +9,11 @@ import RecentPosts from '../components/recentPosts'
 import style from '../assets/stylesheet/pages/blog.module.scss'
 
 const Category = ({ data, pageContext }) => {
-    const { previousPagePath, nextPagePath } = pageContext;
+    const { previousPagePath, nextPagePath, name } = pageContext;
     
     return (
         <Layout style={style}>
-            <Seo title="Blog" description="Postagens de blog" />
+            <Seo title={`Postagens na categoria ${name}`} description={`Postagens do blog na categoria ${name}`} />
             <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
                 <div className={style.FlexSection___blog_recent}>
                     <RecentPosts data={data.allWordpressPost} style={style} />

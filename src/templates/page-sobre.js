@@ -13,6 +13,7 @@ const Sobre = ({ data }) => {
     const { wordpressPage: page } = data
     const content = page.content.split("<p><!--more--></p>")
     const sections = []
+    const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
 
     for (let i = 1; i < content.length; i++) {
         sections.push(
@@ -29,7 +30,7 @@ const Sobre = ({ data }) => {
                 <section className={style.MainSection}>
                     <div className={style.MainSection_image}>
                         <figure>
-                            <Img alt={page.featured_media.alt_text} fixed={page.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: 'calc(100vw - 3rem)' }} />
+                            <Img alt={alt} fixed={page.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: 'calc(100vw - 3rem)' }} />
                         </figure>
                     </div>
                     <div className={style.MainSection_content}>

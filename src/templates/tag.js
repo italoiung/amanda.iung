@@ -42,7 +42,7 @@ export const pageQuery = graphql`
       sort: { fields: date, order: DESC }
       limit: $limit
       skip: $skip
-      filter: { categories: { elemMatch: { slug: { eq: $slug } } } }
+      filter: { tags: { elemMatch: { slug: { eq: $slug } } } }
     ) {
       edges {
         node {

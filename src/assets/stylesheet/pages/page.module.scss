@@ -9,7 +9,7 @@ header.Header {
 }
 
 main {
-    article.Post {
+    article.Page {
         margin-bottom: 70px;
 
         header {
@@ -26,30 +26,17 @@ main {
                 height: 425px;
             }
 
-            .Post_postMeta {
+            .Page_pageMeta {
                 z-index: 2;
                 max-width: $max-width / 1.5;
-
-                time {
-                    @include fontSize(22);
-                    font-family: $font-items;
-                }
-
                 h2 {
                     @include fluid-type(320px, 1152px, 32px, 48px);
                     font-family: $font-heading;
                     font-weight: 900;
                 }
-
-                div {
-                    @include fontSize(24);
-                    font-family: $font-items;
-                    font-weight: 900;
-                    letter-spacing: 1.5px;
-                }
             }
 
-            .Post_postImage {
+            .Page_pageImage {
                 position: absolute;
                 bottom: 0;
                 right: 0;
@@ -73,26 +60,6 @@ main {
         section {
             padding: 0 1rem;
             margin: 0;
-        }
-
-        footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            width: 100%;
-            margin-top: 35px;
-
-            .Post_postTags {
-                @include fontSize(16);
-                font-family: $font-items;
-
-                a {
-                    @include fontSize(18);
-                    font-weight: 700;
-                    letter-spacing: 1.5px;
-                }
-            }
         }
     }
 }

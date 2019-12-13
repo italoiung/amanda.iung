@@ -36,7 +36,7 @@ module.exports = {
         baseUrl: `localhost:8012/amanda.iung.admin`,
         protocol: `http`,
         hostingWPCOM: false,
-        useACF: false,
+        useACF: true,
         includedRoutes: [
           "**/categories",
           "**/posts",
@@ -45,8 +45,20 @@ module.exports = {
           "**/taxonomies",
           "**/services",
           "**/pages",
-          "**/menus"
+          "**/menus",
+          "**/trabalhos"
         ],
+        // plugins: [
+        //   {
+        //     resolve: `gatsby-wordpress-inline-images`,
+        //     options: {
+        //       baseUrl: `localhost:8012/amanda.iung.admin`,
+        //       protocol: `http`,
+        //       maxWidth: 1152,
+        //       useACF: true
+        //     }
+        //   }
+        // ]
       },
     },
     `gatsby-plugin-sass`,

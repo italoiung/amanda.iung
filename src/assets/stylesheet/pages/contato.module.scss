@@ -1,0 +1,181 @@
+@import "../base";
+@import "../layout";
+
+main.MainFluid {
+    max-width: 100%;
+
+    background-color: $dark-blue;
+
+    section {
+        &.MainSection {
+            background-color: $body-bg-color;
+
+            .MainSection_content {
+                position: relative;
+                z-index: 2;
+
+                max-width: $max-width / 1.5;
+                margin: 70px auto;
+                text-align: center;
+
+                h2,
+                h3,
+                p {
+                    margin-bottom: 0.5rem;
+                    line-height: 1.75rem;
+                }
+
+                h2 {
+                    @include fluid-type(320px, 1152px, 28px, 42px);
+                }
+            }
+
+            &::before {
+                content: "";
+
+                position: absolute;
+                z-index: 1;
+                display: block;
+
+                width: 100vw;
+                height: 160px;
+
+                bottom: -45%;
+
+                @include sm {
+                    bottom: -65%;
+                }
+
+                @include md {
+                    bottom: -55%;
+                }
+
+                @include lg {
+                    bottom: -50%;
+                }
+
+                left: calc(50% - 50vw);
+
+                background-color: inherit;
+
+                transform: skewY(-2.5deg);
+            }
+        }
+
+        &.FormSection {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            @include md {
+                flex-wrap: nowrap;
+            }
+
+            .FormSection_form {
+                position: relative;
+                align-self: flex-start;
+
+                padding: 2rem 3rem;
+                margin-bottom: 35px;
+
+                @include md {
+                    margin-bottom: 100px;
+                }
+
+                background-color: $text-primary;
+                box-shadow: 0 10px 15px 5px rgba(0, 0, 0, 0.5);
+
+                form {
+                    .FormSection_form_formGroup {
+                        margin-bottom: 0.5rem;
+
+                        label {
+                            display: block;
+
+                            @include fontSize(14);
+                            font-family: $font-items;
+                            // letter-spacing: -1px;
+                            font-weight: 500;
+                            text-transform: uppercase;
+
+                            margin-bottom: 0.25rem;
+
+                            color: $dark-grey;
+                        }
+
+                        input,
+                        textarea {
+                            outline: none;
+                            border: 0;
+                            border-bottom: 1px solid $dark-grey;
+                            padding: 0.5rem;
+                            width: 275px;
+
+                            font-family: $font-items;
+
+                            background-color: rgba($color: $text-secondary, $alpha: 0.25);
+                        }
+
+                        textarea {
+                            height: 200px;
+                        }
+                    }
+
+                    button {
+                        outline: none;
+                        border: 0;
+
+                        width: 100%;
+                        padding: .5rem 0;
+
+                        background-color: $dark-blue;
+                        color: $text-primary;
+                        
+                        transition: all .3s;
+
+                        @include on-event {
+                            background-color: $dark-grey;
+                        }
+                    }
+                }
+            }
+
+            .FormSection_image {
+                align-self: flex-end;
+
+                margin-left: 0;
+
+                @include md {
+                    margin-left: 2rem;
+                }
+            }
+
+            &::before {
+                content: "";
+
+                position: absolute;
+                z-index: 1;
+                display: block;
+
+                width: 100vw;
+                height: 160px;
+
+                bottom: -15%;
+
+                @include md {
+                    bottom: -20%;
+                }
+
+                @include xl {
+                    bottom: -20%;
+                }
+
+                left: calc(50% - 50vw);
+
+                background-color: $body-bg-color;
+
+                transform: skewY(2.5deg);
+            }
+        }
+    }
+}

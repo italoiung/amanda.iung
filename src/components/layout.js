@@ -28,7 +28,7 @@ const Layout = ({ children, style }) => {
   return (
     <Fragment>
       <Header siteTitle={data.site.siteMetadata.title} style={style} />
-      <main>{children}</main>
+      <main className={style.MainFluid}>{children}</main>
       <Footer author={data.site.siteMetadata.author} authorUrl={data.site.siteMetadata.authorUrl} style={style} />
     </Fragment>
   )

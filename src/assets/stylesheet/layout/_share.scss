@@ -1,0 +1,44 @@
+.Share {
+    display: flex;
+
+    .SocialIcon {
+        outline: none;
+        cursor: pointer;
+        padding: 0.2rem;
+
+        circle,
+        path {
+            transition: 0.5s all;
+        }
+
+        @include on-event {
+            path {
+                fill: #ffffff !important;
+            }
+
+            &.SocialIcon___facebook {
+                circle {
+                    fill: #3b5998 !important;
+                }
+            }
+            
+            &.SocialIcon___twitter {
+                circle {
+                    fill: #00aced !important;
+                }
+            }
+
+            &.SocialIcon___whatsapp {
+                circle {
+                    fill: #2cb742 !important;
+                }
+            }
+
+            &.SocialIcon___linkedin {
+                circle {
+                    fill: #007fb1 !important;
+                }
+            }
+        }
+    }
+}

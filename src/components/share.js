@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     FacebookShareButton,
@@ -12,7 +12,7 @@ import {
 } from 'react-share';
 
 const Share = ({ socialConfig, tags, style }) => (
-    <Fragment>
+    <div className={style.Share}>
         <FacebookShareButton url={socialConfig.config.url} className={`${style.SocialIcon} ${style.SocialIcon___facebook}`} quote={socialConfig.config.title} >
             <FacebookIcon size={32} round={true} iconBgStyle={{fill: '#c8cfb7'}} logoFillColor="#566063" />
         </FacebookShareButton>
@@ -25,7 +25,7 @@ const Share = ({ socialConfig, tags, style }) => (
         <LinkedinShareButton url={socialConfig.config.url} className={`${style.SocialIcon} ${style.SocialIcon___linkedin}`} title={socialConfig.config.title} >
             <LinkedinIcon size={32} round={true} iconBgStyle={{fill: '#c8cfb7'}} logoFillColor="#566063" />
         </LinkedinShareButton>
-    </Fragment>
+    </div>
 );
 
 Share.propTypes = {

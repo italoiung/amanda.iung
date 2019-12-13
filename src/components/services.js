@@ -32,19 +32,23 @@ const Services = ({ style }) => {
     `)
 
     const { allWordpressWpServices } = data
-    const services = allWordpressWpServices.edges.map(service =>
-        <section className={`${style.FlexSection} ${style.FlexSection___service}`} key={service.node.id}>
-            <div className={style.FlexSection___service_content}>
-                <h2><Link to={"/services/" + service.node.slug}>{service.node.title}</Link></h2>
-                {parser(service.node.excerpt)}
-            </div>
-            <div className={style.FlexSection___service_image}>
-                <figure>
-                    <Img alt={service.node.featured_media.alt_text} fixed={service.node.featured_media.localFile.childImageSharp.fixed} />
-                </figure>
-            </div>
-        </section>
-    )
+    const services = allWordpressWpServices.edges.map(service => {
+        let alt = service.node.featured_media.alt_text ? service.node.featured_media.alt_text : service.node.title
+        return (
+            <section className={`${style.FlexSection} ${style.FlexSection___service}`} key={service.node.id}>
+                <div className={style.FlexSection___service_content}>
+                    <h2>{service.node.title}</h2>
+                    {parser(service.node.excerpt)}
+                </div>
+                <div className={style.FlexSection___service_image}>
+                    <figure>
+                        <Link to={"/services/" + service.node.slug}>VER MAIS</Link>
+                        <Img alt={alt} fixed={service.node.featured_media.localFile.childImageSharp.fixed} />
+                    </figure>
+                </div>
+            </section>
+        )
+    })
     return services
 }
 

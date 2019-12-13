@@ -14,6 +14,7 @@ import style from '../assets/stylesheet/pages/home.module.scss'
 
 const HomePage = ({ data }) => {
     const { wordpressPage: page, allWordpressPost: dataRecentPosts } = data
+    const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
 
     return (
         <Layout style={style}>
@@ -22,7 +23,7 @@ const HomePage = ({ data }) => {
                 <div className={style.FlexSection___main_content}>{parser(page.content)}</div>
                 <div className={style.FlexSection___main_image}>
                     <figure>
-                        <Img alt={page.featured_media.alt_text} fixed={page.featured_media.localFile.childImageSharp.fixed} />
+                        <Img alt={alt} fixed={page.featured_media.localFile.childImageSharp.fixed} />
                     </figure>
                 </div>
             </section>

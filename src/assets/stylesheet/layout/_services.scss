@@ -3,6 +3,20 @@ main {
         &.FlexSection___service {
             justify-content: flex-end;
 
+            @include on-event {
+                .FlexSection___service_image {
+                    figure {
+                        > a {
+                            width: 75%;
+                            height: 75%;
+
+                            color: $text-primary;
+                            background-color: rgba($color: $dark-grey, $alpha: 0.75);
+                        }
+                    }
+                }
+            }
+
             .FlexSection___service_content {
                 position: absolute;
                 top: 50%;
@@ -13,9 +27,9 @@ main {
                 width: 100%;
                 max-width: 320px;
                 padding: 1rem;
-                
+
                 background-color: rgba($color: $dark-grey, $alpha: 0.75);
-                
+
                 @include md {
                     top: 160px;
                     transform: none;
@@ -35,7 +49,7 @@ main {
                     color: $text-secondary;
 
                     font-style: italic;
-                    
+
                     padding-right: 2rem;
                 }
             }
@@ -44,8 +58,34 @@ main {
                 background-color: $dark-blue;
 
                 figure {
+                    position: relative;
+
                     opacity: 0.75;
                     box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.9);
+
+                    > a {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        z-index: 2;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        font-weight: 700;
+                        letter-spacing: 1px;
+                        font-family: $font-heading;
+                        text-decoration: underline;
+
+                        height: 5%;
+                        width: 5%;
+
+                        color: transparent;
+                        background-color: transparent;
+
+                        transform: translate(-50%, -50%);
+                        transition: 0.5s all;
+                    }
                 }
 
                 padding: 1rem 1.5rem;

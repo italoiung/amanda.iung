@@ -11,8 +11,15 @@ import Share from '../components/share'
 import style from '../assets/stylesheet/pages/post.module.scss'
 
 const Post = ({ data }) => {
-    const { wordpressPost: post } = data
-    const { site: { siteMetadata: { url, owner } } } = data
+    const { wordpressPost: post, site: { siteMetadata: { url, owner } } } = data
+    const alt = post.featured_media.alt_text ? post.featured_media.alt_text : post.title
+
+    const image = post.featured_media ?
+        <div className={style.Post_postImage}>
+            <figure>
+                <Img alt={alt} fixed={post.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+            </figure>
+        </div> : null
 
     const categories = post.categories.map((category, index) =>
         <Fragment key={category.id + "-" + post.id + "-category"}>
@@ -43,11 +50,7 @@ const Post = ({ data }) => {
                             {categories}
                         </div>
                     </div>
-                    <div className={style.Post_postImage}>
-                        <figure>
-                            <Img alt={post.featured_media.alt_text} fixed={post.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
-                        </figure>
-                    </div>
+                    {image}
                 </header>
                 <section>
                     {parser(post.content)}
@@ -56,19 +59,17 @@ const Post = ({ data }) => {
                     <div className={style.Post_postTags}>
                         Tags: {tags}
                     </div>
-                    <div className={style.Post_postShare}>
-                        <Share
-                            socialConfig={{
-                                owner,
-                                config: {
-                                    url: `${url}/${post.slug}`,
-                                    title: post.title,
-                                },
-                            }}
-                            tags={hashtags}
-                            style={style}
-                        />
-                    </div>
+                    <Share
+                        socialConfig={{
+                            owner,
+                            config: {
+                                url: `${url}/${post.slug}`,
+                                title: post.title,
+                            },
+                        }}
+                        tags={hashtags}
+                        style={style}
+                    />
                 </footer>
             </article>
         </Layout>

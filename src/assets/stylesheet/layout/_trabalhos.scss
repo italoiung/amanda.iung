@@ -1,0 +1,84 @@
+main {
+    article {
+        section.Trabalhos {
+            margin-top: 70px;
+            
+            .Trabalhos_heading {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                @include sm {
+                    font-size: 1.8rem;
+                }
+
+                .Trabalhos_heading_headingAside {
+                    font-family: $font-items;
+                    font-weight: 300;
+                    font-size: 1rem;
+                    text-transform: uppercase;
+            
+                    color: $text-secondary;
+    
+                    @include sm {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+
+            .Trabalhos_wrapper {
+                display: grid;
+                grid-row-gap: 15px;
+
+                @include lg {
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-column-gap: 15px;
+                }
+
+                .Trabalhos_wrapper_singleTrabalho {
+                    min-width: 0;
+                    background-color: $dark-grey;
+                    box-shadow: 0 10px 15px 1px rgba(0, 0, 0, 0.5);
+
+                    @include sm {
+                        display: grid;
+                        grid-template-columns: 240px 1fr;
+                        align-items: center;
+                    }
+
+                    @include md {
+                        grid-template-columns: 375px 1fr;
+                    }
+
+                    @include lg {
+                        display: block;
+                    }
+
+                    .Trabalhos_wrapper_singleTrabalho_metaBox {
+                        padding: 1rem;
+                    }
+
+                    figure {
+                        div {
+                            @include sm {
+                                height: 240px !important;
+                            }
+
+                            @include md {
+                                height: 375px !important;
+                            }
+
+                            @include lg {
+                                height: calc(100vw / 3) !important;
+                            }
+
+                            @include xl {
+                                height: $max-width / 3 !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
