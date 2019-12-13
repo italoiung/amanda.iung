@@ -103,7 +103,7 @@ exports.createPages = async ({ graphql, actions }) => {
   paginate({
     createPage,
     items: publishedPosts,
-    itemsPerPage: 4,
+    itemsPerPage: 10,
     pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog` : `/blog/page`),
     component: path.resolve(`./src/templates/blog.js`)
   })
@@ -117,7 +117,7 @@ exports.createPages = async ({ graphql, actions }) => {
     paginate({
       createPage,
       items: filteredCatPosts,
-      itemsPerPage: 3,
+      itemsPerPage: 10,
       pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog/categoria/${edge.node.slug}` : `/blog/categoria/${edge.node.slug}/page`),
       component: path.resolve(`./src/templates/category.js`),
       context: {
@@ -136,7 +136,7 @@ exports.createPages = async ({ graphql, actions }) => {
     paginate({
       createPage,
       items: filteredTagPosts,
-      itemsPerPage: 3,
+      itemsPerPage: 10,
       pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog/tag/${edge.node.slug}` : `/blog/tag/${edge.node.slug}/page`),
       component: path.resolve(`./src/templates/tag.js`),
       context: {
