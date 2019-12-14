@@ -5,4 +5,5 @@ Primeiro repositório: projeto desenvolvido para recém formada em jornalismo
 To do:
 - [ ] Fix taxonomy pagination
 - [ ] Add support for inline content images
-- [ ] Add gatsby-plugin-gtag, gatsby-plugin-feed and gatsby-plugin-sitemap after the web site is populated with content so it's not indexed anywhere right now
+- [ ] Allow indexing in robots.text after all content is ready
+- [ ] Configure Search Console
