@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Amanda Iung`,
     description: `Jornalista Freelancer`,
-    url: `https://amanda.iung.me`,
+    siteUrl: `https://amanda.iung.me`,
     owner: `@amanda_iung`,
     author: `Ítalo Iung`,
     authorUrl: `https://italo.iung.me`,
@@ -33,8 +33,8 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: `localhost:8012/amanda.iung.admin`,
-        protocol: `http`,
+        baseUrl: `adminamanda.iung.me`,
+        protocol: `https`,
         hostingWPCOM: false,
         useACF: true,
         includedRoutes: [
@@ -48,20 +48,8 @@ module.exports = {
           "**/menus",
           "**/trabalhos"
         ],
-        // plugins: [
-        //   {
-        //     resolve: `gatsby-wordpress-inline-images`,
-        //     options: {
-        //       baseUrl: `localhost:8012/amanda.iung.admin`,
-        //       protocol: `http`,
-        //       maxWidth: 1152,
-        //       useACF: true
-        //     }
-        //   }
-        // ]
       },
     },
-    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
@@ -78,6 +66,82 @@ module.exports = {
         ]
       }
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allWordpressPost } }) => {
+              return allWordpressPost.edges.map(edge => {
+                return Object.assign(
+                  {},
+                  {
+                    title: edge.node.title,
+                    description: edge.node.excerpt,
+                    date: edge.node.date,
+                    url: site.siteMetadata.siteUrl + "/blog/" + edge.node.slug,
+                    guid: site.siteMetadata.siteUrl + "/blog/" + edge.node.slug,
+                  }
+                )
+              })
+            },
+            query: `
+              {
+                allWordpressPost(sort: { fields: [date], order: DESC }) {
+                  edges {
+                    node {
+                      title
+                      excerpt
+                      slug
+                    }
+                  }
+                }
+                site {
+                  siteMetadata {
+                    title
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Amanda Iung - RSS Feed",
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.example.com',
+        sitemap: 'https://www.example.com/sitemap.xml',
+        policy: [{ userAgent: '*', disallow: ['/'] }]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-gtag`,
+      options: {
+        // your google analytics tracking id
+        trackingId: `UA-154569990-1`,
+        // Puts tracking script in the head instead of the body
+        head: false,
+        // enable ip anonymization
+        anonymize: true
+      },
+    },
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`
     // this (optional) plugin enables Progressive Web App + Offline functionality

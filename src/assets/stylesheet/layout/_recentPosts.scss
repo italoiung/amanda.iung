@@ -24,7 +24,7 @@ main {
                         grid-template-columns: $xl-figure-size 1fr;
                     }
 
-                    &:hover {
+                    @include on-event {
                         figure {
                             > div {
                                 transform: scale(1.25, 1.25);

@@ -11,7 +11,7 @@ import Share from '../components/share'
 import style from '../assets/stylesheet/pages/trabalho.module.scss'
 
 const Trabalho = ({ data }) => {
-    const { wordpressWpTrabalhos: trabalho, site: { siteMetadata: { url, owner } } } = data
+    const { wordpressWpTrabalhos: trabalho, site: { siteMetadata: { siteUrl, owner } } } = data
     const alt = trabalho.featured_media.alt_text ? trabalho.featured_media.alt_text : trabalho.title
 
     return (
@@ -37,7 +37,7 @@ const Trabalho = ({ data }) => {
                             socialConfig={{
                                 owner,
                                 config: {
-                                    url: `${url}/${trabalho.slug}`,
+                                    siteUrl: `${siteUrl}/${trabalho.slug}`,
                                     title: trabalho.title,
                                 },
                             }}
@@ -60,7 +60,7 @@ export const pageQuery = graphql`
     query TrabalhoByIdAndSiteMeta($id: String!) {
         site {
             siteMetadata {
-                url
+                siteUrl
                 owner
             }
         }

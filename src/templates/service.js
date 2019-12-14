@@ -12,7 +12,7 @@ import Share from '../components/share'
 import style from '../assets/stylesheet/pages/service.module.scss'
 
 const Service = ({ data }) => {
-    const { wordpressWpServices: service, site: { siteMetadata: { url, owner } }, allWordpressWpTrabalhos } = data
+    const { wordpressWpServices: service, site: { siteMetadata: { siteUrl, owner } }, allWordpressWpTrabalhos } = data
     const alt = service.featured_media.alt_text ? service.featured_media.alt_text : service.title
 
     const trabalhos = allWordpressWpTrabalhos.edges.length ? <Trabalhos data={allWordpressWpTrabalhos} style={style} /> : null
@@ -40,7 +40,7 @@ const Service = ({ data }) => {
                         socialConfig={{
                             owner,
                             config: {
-                                url: `${url}/${service.slug}`,
+                                siteUrl: `${siteUrl}/${service.slug}`,
                                 title: service.title,
                             },
                         }}
@@ -62,7 +62,7 @@ export const pageQuery = graphql`
     query ServiceByIdAndSiteMetaAndTrabalhos($id: String!, $trabalhos: [Int]) {
         site {
             siteMetadata {
-                url
+                siteUrl
                 owner
             }
         }

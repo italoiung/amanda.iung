@@ -40,6 +40,14 @@ main {
                     background-color: $dark-grey;
                     box-shadow: 0 10px 15px 1px rgba(0, 0, 0, 0.5);
 
+                    @include on-event {
+                        figure {
+                            > div {
+                                transform: scale(1.25, 1.25);
+                            }
+                        }
+                    }
+
                     @include sm {
                         display: grid;
                         grid-template-columns: 240px 1fr;
@@ -60,6 +68,8 @@ main {
 
                     figure {
                         div {
+                            transition: 0.7s transform;
+
                             @include sm {
                                 height: 240px !important;
                             }

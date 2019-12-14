@@ -11,7 +11,7 @@ import Share from '../components/share'
 import style from '../assets/stylesheet/pages/post.module.scss'
 
 const Post = ({ data }) => {
-    const { wordpressPost: post, site: { siteMetadata: { url, owner } } } = data
+    const { wordpressPost: post, site: { siteMetadata: { siteUrl, owner } } } = data
     const alt = post.featured_media.alt_text ? post.featured_media.alt_text : post.title
 
     const image = post.featured_media ?
@@ -63,7 +63,7 @@ const Post = ({ data }) => {
                         socialConfig={{
                             owner,
                             config: {
-                                url: `${url}/${post.slug}`,
+                                siteUrl: `${siteUrl}/${post.slug}`,
                                 title: post.title,
                             },
                         }}
@@ -86,7 +86,7 @@ export const pageQuery = graphql`
     query PostByIdAndSiteMeta($id: String!) {
         site {
             siteMetadata {
-                url
+                siteUrl
                 owner
             }
         }

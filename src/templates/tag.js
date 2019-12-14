@@ -10,6 +10,7 @@ import style from '../assets/stylesheet/pages/blog.module.scss'
 
 const Tag = ({ data, pageContext }) => {
     const { previousPagePath, nextPagePath, name } = pageContext;
+    console.log(pageContext)
 
     return (
         <Layout style={style}>

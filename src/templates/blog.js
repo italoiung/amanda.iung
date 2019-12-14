@@ -11,13 +11,14 @@ import style from '../assets/stylesheet/pages/blog.module.scss'
 // Paginated blog archive
 const Blog = ({ data, pageContext }) => {
     const { previousPagePath, nextPagePath } = pageContext;
+    const posts = data.allWordpressPost ? <RecentPosts data={data.allWordpressPost} style={style} /> : <h2>Nenhum post encontrado! :(</h2>
 
     return (
         <Layout style={style}>
             <Seo title="Blog" description="Postagens de blog" />
             <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
                 <div className={style.FlexSection___blog_recent}>
-                    <RecentPosts data={data.allWordpressPost} style={style} />
+                    {posts}
                 </div>
                 <div className={style.FlexSection___blog_nav}>
                     {previousPagePath ? <div className={`${style.FlexSection___blog_nav_item} ${style.FlexSection___blog_nav_item___before}`}>

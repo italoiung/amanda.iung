@@ -5,7 +5,7 @@ const { paginate } = require('gatsby-awesome-pagination')
 // Querying everything that will use specific templates and assigning it
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const posts = await graphql(`
+  const result = await graphql(`
     {
       allWordpressPost {
         edges {
@@ -72,17 +72,12 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   // Check for any errors
-  if (posts.errors) {
-    throw new Error(posts.errors)
+  if (result.errors) {
+    throw new Error(result.errors)
   }
 
-  // Access query posts via object destructuring
-  const { allWordpressPost } = posts.data
-  const { allWordpressCategory } = posts.data
-  const { allWordpressTag } = posts.data
-  const { allWordpressPage } = posts.data
-  const { allWordpressWpServices } = posts.data
-  const { allWordpressWpTrabalhos } = posts.data
+  // Access query result via object destructuring
+  const { allWordpressPost, allWordpressCategory, allWordpressTag, allWordpressPage, allWordpressWpServices, allWordpressWpTrabalhos } = result.data
 
   // Create page for each published posts and inserting them into an array
   const publishedPosts = []

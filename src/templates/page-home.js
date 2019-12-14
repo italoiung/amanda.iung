@@ -16,6 +16,17 @@ const HomePage = ({ data }) => {
     const { wordpressPage: page, allWordpressPost: dataRecentPosts } = data
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
 
+    const posts = dataRecentPosts ? 
+    <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
+        <h2>Últimas Postagens</h2>
+        <div className={style.FlexSection___blog_recent}>
+            <RecentPosts data={dataRecentPosts} style={style} />
+        </div>
+        <div className={style.FlexSection___blog_featured}>
+            <FeaturedPosts style={style} />
+        </div>
+    </section> : null
+
     return (
         <Layout style={style}>
             <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} />
@@ -28,15 +39,7 @@ const HomePage = ({ data }) => {
                 </div>
             </section>
             <Services style={style} />
-            <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
-                <h2>Últimas Postagens</h2>
-                <div className={style.FlexSection___blog_recent}>
-                    <RecentPosts data={dataRecentPosts} style={style} />
-                </div>
-                <div className={style.FlexSection___blog_featured}>
-                    <FeaturedPosts style={style} />
-                </div>
-            </section>
+            {posts}
         </Layout>
     )
 }
