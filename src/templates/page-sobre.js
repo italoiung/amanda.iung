@@ -14,6 +14,7 @@ const Sobre = ({ data }) => {
     const { wordpressPage: page } = data
     const content = page.content.split("<p><!--more--></p>")
     const sections = []
+    const title = page.featured_media.title ? page.featured_media.title : page.title
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
 
     for (let i = 1; i < content.length; i++) {
@@ -31,7 +32,7 @@ const Sobre = ({ data }) => {
                 <section className={style.MainSection}>
                     <div className={style.MainSection_image}>
                         <figure>
-                            <Img alt={alt} fixed={page.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: 'calc(100vw - 3rem)' }} />
+                            <Img alt={alt} title={title} fixed={page.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: 'calc(100vw - 3rem)' }} />
                         </figure>
                     </div>
                     <div className={style.MainSection_content}>
@@ -60,6 +61,7 @@ export const pageQuery = graphql`
         }
         featured_media {
             alt_text
+            title
             localFile {
                 childImageSharp {
                     fixed(width: 576, height: 576, quality: 100) {

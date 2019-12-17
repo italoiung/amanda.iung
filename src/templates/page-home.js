@@ -15,6 +15,7 @@ import style from '../assets/stylesheet/pages/home.module.scss'
 const HomePage = ({ data }) => {
     const { wordpressPage: page, allWordpressPost: dataRecentPosts } = data
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
+    const title = page.featured_media.title ? page.featured_media.title : page.title
 
     const posts = dataRecentPosts ? 
     <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
@@ -34,7 +35,7 @@ const HomePage = ({ data }) => {
                 <div className={style.FlexSection___main_content}>{parser(page.content)}</div>
                 <div className={style.FlexSection___main_image}>
                     <figure>
-                        <Img alt={alt} fixed={page.featured_media.localFile.childImageSharp.fixed} />
+                        <Img alt={alt} title={title} fixed={page.featured_media.localFile.childImageSharp.fixed} />
                     </figure>
                 </div>
             </section>
@@ -60,6 +61,7 @@ export const pageQuery = graphql`
         }
         featured_media {
             alt_text
+            title
             localFile {
                 childImageSharp {
                     fixed(width: 960, height: 500, quality: 100) {
@@ -77,6 +79,7 @@ export const pageQuery = graphql`
                 slug
                 date(formatString: "DD/MM/YYYY")
                 featured_media {
+                    title
                     alt_text
                     localFile {
                         childImageSharp {

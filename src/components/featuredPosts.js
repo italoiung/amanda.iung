@@ -16,6 +16,7 @@ const FeaturedPosts = ({ style }) => {
                         date(formatString: "DD/MM/YYYY")
                         featured_media {
                             alt_text
+                            title
                             localFile {
                                 childImageSharp {
                                     fixed(width: 575, height: 575) {
@@ -37,6 +38,7 @@ const FeaturedPosts = ({ style }) => {
     const { allWordpressPost } = data
     const posts = allWordpressPost.edges.map(post => {
         let alt = post.node.featured_media.alt_text ? post.node.featured_media.alt_text : post.node.title
+        let title = post.node.featured_media.title ? post.node.featured_media.title : post.node.title
         let categories = post.node.categories.map(categorie =>
             <span key={categorie.id + "-" + post.node.id + "-featured"}>{categorie.name}</span>
         )
@@ -44,7 +46,7 @@ const FeaturedPosts = ({ style }) => {
             <Link key={post.node.id + "-featured"} to={"/blog/" + post.node.slug}>
                 <article>
                     <figure>
-                        <Img alt={alt} fixed={post.node.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: "100vw" }} />
+                        <Img alt={alt} title={title} fixed={post.node.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: "100vw" }} />
                     </figure>
                     <div className={style.FlexSection___blog_featured_postMeta}>
                         <time>{post.node.date}</time>

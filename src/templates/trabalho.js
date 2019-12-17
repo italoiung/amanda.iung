@@ -10,9 +10,11 @@ import Share from '../components/share'
 
 import style from '../assets/stylesheet/pages/trabalho.module.scss'
 
+// Single trabalho template
 const Trabalho = ({ data }) => {
     const { wordpressWpTrabalhos: trabalho, site: { siteMetadata: { siteUrl, owner } } } = data
     const alt = trabalho.featured_media.alt_text ? trabalho.featured_media.alt_text : trabalho.title
+    const title = trabalho.featured_media.title ? trabalho.featured_media.title : trabalho.title
 
     return (
         <Layout style={style}>
@@ -20,11 +22,11 @@ const Trabalho = ({ data }) => {
             <article className={style.Trabalho}>
                 <header>
                     <div className={style.Trabalho_trabalhoMeta}>
-                        <h2>{trabalho.title}</h2>
+                        <h2>{parser(trabalho.title)}</h2>
                     </div>
                     <div className={style.Trabalho_trabalhoImage}>
                         <figure>
-                            <Img alt={alt} fixed={trabalho.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+                            <Img alt={alt} title={title} fixed={trabalho.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
                         </figure>
                     </div>
                 </header>
@@ -70,6 +72,7 @@ export const pageQuery = graphql`
             slug
             featured_media {
                 alt_text
+                title
                 localFile {
                     childImageSharp {
                         fixed(width: 960, height: 500, quality: 100) {

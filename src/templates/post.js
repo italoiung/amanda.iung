@@ -10,14 +10,16 @@ import Share from '../components/share'
 
 import style from '../assets/stylesheet/pages/post.module.scss'
 
+// Single post template
 const Post = ({ data }) => {
     const { wordpressPost: post, site: { siteMetadata: { siteUrl, owner } } } = data
-    const alt = post.featured_media.alt_text ? post.featured_media.alt_text : post.title
+    const alt = post.featured_media && post.featured_media.alt_text ? post.featured_media.alt_text : post.title
+    const title = post.featured_media && post.featured_media.title ? post.featured_media.title : post.title
 
     const image = post.featured_media ?
         <div className={style.Post_postImage}>
             <figure>
-                <Img alt={alt} fixed={post.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+                <Img alt={alt} title={title} fixed={post.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
             </figure>
         </div> : null
 
@@ -97,6 +99,7 @@ export const pageQuery = graphql`
             date(formatString: "DD/MM/YYYY")
             featured_media {
                 alt_text
+                title
                 localFile {
                     childImageSharp {
                         fixed(width: 960, height: 500, quality: 100) {

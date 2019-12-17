@@ -158,7 +158,7 @@ exports.createPages = async ({ graphql, actions }) => {
   allWordpressWpServices.edges.forEach(edge => {
     if (edge.node.status === 'publish')
       createPage({
-        path: `/services/${edge.node.slug}/`,
+        path: `/servicos/${edge.node.slug}/`,
         component: path.resolve(`./src/templates/service.js`),
         context: {
           id: edge.node.id,

@@ -8,7 +8,7 @@ import parser from 'react-html-parser'
 const Services = ({ style }) => {
     const data = useStaticQuery(graphql`
         query Services {
-            allWordpressWpServices {
+            allWordpressWpServices(sort: {fields: menu_order}) {
                 edges {
                     node {
                         id
@@ -17,6 +17,7 @@ const Services = ({ style }) => {
                         slug
                         featured_media {
                             alt_text
+                            title
                             localFile {
                                 childImageSharp {
                                     fixed(width: 720, height: 435, quality: 100) {
@@ -34,6 +35,7 @@ const Services = ({ style }) => {
     const { allWordpressWpServices } = data
     const services = allWordpressWpServices.edges.map(service => {
         let alt = service.node.featured_media.alt_text ? service.node.featured_media.alt_text : service.node.title
+        let title = service.node.featured_media.title ? service.node.featured_media.title : service.node.title
         return (
             <section className={`${style.FlexSection} ${style.FlexSection___service}`} key={service.node.id}>
                 <div className={style.FlexSection___service_content}>
@@ -42,8 +44,8 @@ const Services = ({ style }) => {
                 </div>
                 <div className={style.FlexSection___service_image}>
                     <figure>
-                        <Link to={"/services/" + service.node.slug}>VER MAIS</Link>
-                        <Img alt={alt} fixed={service.node.featured_media.localFile.childImageSharp.fixed} />
+                        <Link to={"/servicos/" + service.node.slug}>VER MAIS</Link>
+                        <Img alt={alt} title={title} fixed={service.node.featured_media.localFile.childImageSharp.fixed} />
                     </figure>
                 </div>
             </section>

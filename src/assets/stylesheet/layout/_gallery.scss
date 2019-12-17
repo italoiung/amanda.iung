@@ -1,0 +1,41 @@
+.Gallery {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include sm {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include md {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .Gallery_imageWrapper {
+        display: flex;
+        min-width: 0;
+        cursor: pointer;
+        
+        > div {
+            height: 50vw !important;
+            transition: .7s transform;
+
+            @include on-event {
+                transform: scale(1.25, 1.25);
+            }
+
+            @include sm {
+                height: (100vw / 3) !important;
+            }
+
+            @include md {
+                height: (100vw / 4) !important;
+            }
+
+            @include xl {
+                height: ($max-width / 4) !important;
+            }
+
+        }
+    }
+}

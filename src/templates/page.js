@@ -13,11 +13,12 @@ import style from '../assets/stylesheet/pages/page.module.scss'
 const Page = ({ data }) => {
     const { wordpressPage: page } = data
     const alt = page.featured_media && page.featured_media.alt_text ? page.featured_media.alt_text : page.title
+    const title = page.featured_media && page.featured_media.title ? page.featured_media.title : page.title
 
     const image = page.featured_media ? 
     <div className={style.Page_pageImage}>
         <figure>
-            <Img alt={alt} fixed={page.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+            <Img alt={alt} title={title} fixed={page.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
         </figure>
     </div> : null
 
@@ -53,6 +54,7 @@ export const pageQuery = graphql`
             slug
             featured_media {
                 alt_text
+                title
                 localFile {
                     childImageSharp {
                         fixed(width: 960, height: 500, quality: 100) {

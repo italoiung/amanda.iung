@@ -8,9 +8,9 @@ import RecentPosts from '../components/recentPosts'
 
 import style from '../assets/stylesheet/pages/blog.module.scss'
 
+// Tag archive template
 const Tag = ({ data, pageContext }) => {
     const { previousPagePath, nextPagePath, name } = pageContext;
-    console.log(pageContext)
 
     return (
         <Layout style={style}>
@@ -52,6 +52,7 @@ export const pageQuery = graphql`
             slug
             date(formatString: "DD/MM/YYYY")
             featured_media {
+                title
                 alt_text
                 localFile {
                     childImageSharp {

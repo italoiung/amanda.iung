@@ -53,6 +53,7 @@ export const pageQuery = graphql`
             date(formatString: "DD/MM/YYYY")
             featured_media {
                 alt_text
+                title
                 localFile {
                     childImageSharp {
                         fixed(width: 576, height: 576) {
