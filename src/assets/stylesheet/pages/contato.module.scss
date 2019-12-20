@@ -40,8 +40,8 @@ main.MainFluid {
 
                 width: 100vw;
                 height: 160px;
-
-                bottom: -45%;
+                
+                bottom: -50%;
 
                 @include sm {
                     bottom: -65%;
@@ -76,7 +76,11 @@ main.MainFluid {
                 position: relative;
                 align-self: flex-start;
 
-                padding: 2rem 3rem;
+                padding: 3rem 1rem 1rem;
+
+                @include sm {
+                    padding: 2rem 3rem;
+                }
                 margin-bottom: 35px;
 
                 @include md {
@@ -111,6 +115,7 @@ main.MainFluid {
                             border-bottom: 1px solid $dark-grey;
                             padding: 0.5rem;
                             width: 275px;
+                            max-width: 100%;
 
                             font-family: $font-items;
 

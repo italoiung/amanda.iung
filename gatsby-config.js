@@ -51,22 +51,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Roboto Condensed`
-          },
-          {
-            family: `Comfortaa`
-          },
-          {
-            family: `Montserrat`
-          },
-        ]
-      }
-    },
-    {
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
