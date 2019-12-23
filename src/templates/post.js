@@ -19,7 +19,7 @@ const Post = ({ data }) => {
     const image = post.featured_media ?
         <div className={style.Post_postImage}>
             <figure>
-                <Img alt={alt} title={title} fixed={post.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+                <Img alt={alt} title={title} fixed={post.featured_media.localFile.childImageSharp.fixed} />
             </figure>
         </div> : null
 

@@ -29,11 +29,36 @@ const Services = ({ style }) => {
                     }
                 }
             }
+            mobile: allWordpressWpServices(sort: {fields: menu_order}) {
+                edges {
+                    node {
+                        featured_media {
+                            localFile {
+                                childImageSharp {
+                                    fixed(width: 576, height: 348, quality: 100, cropFocus: ENTROPY) {
+                                        ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     `)
 
-    const { allWordpressWpServices } = data
-    const services = allWordpressWpServices.edges.map(service => {
+    const DESKTOP_QUERY = `(min-width: 575px)`;
+
+    const { allWordpressWpServices, mobile } = data
+    const services = allWordpressWpServices.edges.map((service, index) => {
+        let sources = [
+            mobile.edges[index].node.featured_media.localFile.childImageSharp.fixed,
+            {
+                ...service.node.featured_media.localFile.childImageSharp.fixed,
+                media: DESKTOP_QUERY
+            }
+        ]
+
         let alt = service.node.featured_media.alt_text ? service.node.featured_media.alt_text : service.node.title
         let title = service.node.featured_media.title ? service.node.featured_media.title : service.node.title
         return (
@@ -45,7 +70,7 @@ const Services = ({ style }) => {
                 <div className={style.FlexSection___service_image}>
                     <figure>
                         <Link to={"/servicos/" + service.node.slug}>VER MAIS</Link>
-                        <Img alt={alt} title={title} fixed={service.node.featured_media.localFile.childImageSharp.fixed} />
+                        <Img alt={alt} title={title} fixed={sources} />
                     </figure>
                 </div>
             </section>

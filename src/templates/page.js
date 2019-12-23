@@ -18,7 +18,7 @@ const Page = ({ data }) => {
     const image = page.featured_media ? 
     <div className={style.Page_pageImage}>
         <figure>
-            <Img alt={alt} title={title} fixed={page.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+            <Img alt={alt} title={title} fixed={page.featured_media.localFile.childImageSharp.fixed} />
         </figure>
     </div> : null
 

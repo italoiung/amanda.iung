@@ -26,7 +26,7 @@ const Trabalho = ({ data }) => {
                     </div>
                     <div className={style.Trabalho_trabalhoImage}>
                         <figure>
-                            <Img alt={alt} title={title} fixed={trabalho.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+                            <Img alt={alt} title={title} fixed={trabalho.featured_media.localFile.childImageSharp.fixed} />
                         </figure>
                     </div>
                 </header>

@@ -31,7 +31,7 @@ const Service = ({ data }) => {
                     </div>
                     <div className={style.Service_serviceImage}>
                         <figure>
-                            <Img alt={alt} title={title} fixed={service.featured_media.localFile.childImageSharp.fixed} style={{ maxHeight: '100vw' }} />
+                            <Img alt={alt} title={title} fixed={service.featured_media.localFile.childImageSharp.fixed} />
                         </figure>
                     </div>
                 </header>

@@ -19,7 +19,7 @@ const FeaturedPosts = ({ style }) => {
                             title
                             localFile {
                                 childImageSharp {
-                                    fixed(width: 575, height: 575) {
+                                    fixed(width: 575, height: 575, cropFocus: ENTROPY) {
                                         ...GatsbyImageSharpFixed_withWebp
                                     }
                                 }

@@ -13,9 +13,18 @@ import FeaturedPosts from '../components/featuredPosts'
 import style from '../assets/stylesheet/pages/home.module.scss'
 
 const HomePage = ({ data }) => {
-    const { wordpressPage: page, allWordpressPost: dataRecentPosts } = data
+    const DESKTOP_QUERY = `(min-width: 575px)`;
+    const { wordpressPage: page, allWordpressPost: dataRecentPosts, mobile } = data
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
     const title = page.featured_media.title ? page.featured_media.title : page.title
+
+    let sources = [
+        mobile.featured_media.localFile.childImageSharp.fixed,
+        {
+            ...page.featured_media.localFile.childImageSharp.fixed,
+            media: DESKTOP_QUERY
+        }
+    ]
 
     const posts = dataRecentPosts ? 
     <section className={`${style.FlexSection} ${style.FlexSection___blog}`}>
@@ -35,7 +44,7 @@ const HomePage = ({ data }) => {
                 <div className={style.FlexSection___main_content}>{parser(page.content)}</div>
                 <div className={style.FlexSection___main_image}>
                     <figure>
-                        <Img alt={alt} title={title} fixed={page.featured_media.localFile.childImageSharp.fixed} />
+                        <Img alt={alt} title={title} fixed={sources} />
                     </figure>
                 </div>
             </section>
@@ -52,8 +61,8 @@ HomePage.propTypes = {
 export default HomePage
 
 export const pageQuery = graphql`
-    query PageByIdAndRecentPosts($id: String!) {
-        wordpressPage(id: { eq: $id }) {
+query PageByIdAndRecentPosts($id: String!) {
+    wordpressPage(id: { eq: $id }) {
         content
         yoast_meta {
             yoast_wpseo_title
@@ -65,6 +74,17 @@ export const pageQuery = graphql`
             localFile {
                 childImageSharp {
                     fixed(width: 960, height: 500, quality: 100) {
+                        ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                    }
+                }
+            }
+        }
+    }
+    mobile: wordpressPage(id: { eq: $id }) {
+        featured_media {
+            localFile {
+                childImageSharp {
+                    fixed(width: 576, height: 300) {
                         ...GatsbyImageSharpFixed_withWebp_tracedSVG
                     }
                 }
@@ -83,7 +103,7 @@ export const pageQuery = graphql`
                     alt_text
                     localFile {
                         childImageSharp {
-                            fixed(width: 576, height: 576) {
+                            fixed(width: 576, height: 576, cropFocus: ENTROPY) {
                                 ...GatsbyImageSharpFixed_withWebp_tracedSVG
                             }
                         }
