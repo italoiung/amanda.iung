@@ -20,6 +20,7 @@ function SEO({ description, lang, meta, title, image }) {
             description
             owner
             image
+            siteUrl
           }
         }
       }
@@ -27,7 +28,7 @@ function SEO({ description, lang, meta, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const ogImage = image || site.siteMetadata.image
+  const ogImage = image ? `${site.siteMetadata.siteUrl}${image}` : site.siteMetadata.image
 
   return (
     <Helmet

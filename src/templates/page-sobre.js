@@ -16,7 +16,7 @@ const Sobre = ({ data }) => {
     const sections = []
     const title = page.featured_media.title ? page.featured_media.title : page.title
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
-    const source_url = page.featured_media.source_url ? page.featured_media.source_url : null
+    const publicURL = page.featured_media.localFile.publicURL ? page.featured_media.localFile.publicURL : null
 
     for (let i = 1; i < content.length; i++) {
         sections.push(
@@ -28,7 +28,7 @@ const Sobre = ({ data }) => {
 
     return (
         <Layout style={style}>
-            <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} image={source_url} />
+            <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} image={publicURL} />
             <article>
                 <section className={style.MainSection}>
                     <div className={style.MainSection_image}>
@@ -61,10 +61,10 @@ export const pageQuery = graphql`
             yoast_wpseo_metadesc
         }
         featured_media {
-            source_url
             alt_text
             title
             localFile {
+                publicURL
                 childImageSharp {
                     fixed(width: 576, height: 576, quality: 100) {
                         ...GatsbyImageSharpFixed_withWebp_tracedSVG

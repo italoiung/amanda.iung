@@ -17,7 +17,7 @@ const HomePage = ({ data }) => {
     const { wordpressPage: page, allWordpressPost: dataRecentPosts, mobile } = data
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
     const title = page.featured_media.title ? page.featured_media.title : page.title
-    const source_url = page.featured_media.source_url ? page.featured_media.source_url : null
+    const publicURL = page.featured_media.localFile.publicURL ? page.featured_media.localFile.publicURL : null
 
     let sources = [
         mobile.featured_media.localFile.childImageSharp.fixed,
@@ -40,7 +40,7 @@ const HomePage = ({ data }) => {
 
     return (
         <Layout style={style}>
-            <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} image={source_url} />
+            <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} image={publicURL} />
             <section className={`${style.FlexSection} ${style.FlexSection___main}`}>
                 <div className={style.FlexSection___main_content}>{parser(page.content)}</div>
                 <div className={style.FlexSection___main_image}>
@@ -70,10 +70,10 @@ query PageByIdAndRecentPosts($id: String!) {
             yoast_wpseo_metadesc
         }
         featured_media {
-            source_url
             alt_text
             title
             localFile {
+                publicURL
                 childImageSharp {
                     fixed(width: 960, height: 500, quality: 100) {
                         ...GatsbyImageSharpFixed_withWebp_tracedSVG

@@ -5,7 +5,7 @@ module.exports = {
     siteUrl: `https://amanda.iung.me`,
     owner: `@amanda_iung`,
     author: `Ítalo Iung`,
-    image: `https://adminamanda.iung.me/wp-content/uploads/2019/12/main-full.jpg`,
+    image: `https://amanda.iung.me/static/main-full-05abd679c07841e6638bb40aa8030dcc.jpg`,
     authorUrl: `https://italo.iung.me`,
   },
   plugins: [

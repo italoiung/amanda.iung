@@ -15,7 +15,7 @@ const Post = ({ data }) => {
     const { wordpressPost: post, site: { siteMetadata: { siteUrl, owner } } } = data
     const alt = post.featured_media && post.featured_media.alt_text ? post.featured_media.alt_text : post.title
     const title = post.featured_media && post.featured_media.title ? post.featured_media.title : post.title
-    const source_url = post.featured_media.source_url ? post.featured_media.source_url : null
+    const publicURL = post.featured_media.localFile.publicURL ? post.featured_media.localFile.publicURL : null
 
     const image = post.featured_media ?
         <div className={style.Post_postImage}>
@@ -43,7 +43,7 @@ const Post = ({ data }) => {
 
     return (
         <Layout style={style}>
-            <Seo title={post.yoast_meta.yoast_wpseo_title} description={post.yoast_meta.yoast_wpseo_metadesc} image={source_url} />
+            <Seo title={post.yoast_meta.yoast_wpseo_title} description={post.yoast_meta.yoast_wpseo_metadesc} image={publicURL} />
             <article className={style.Post}>
                 <header>
                     <div className={style.Post_postMeta}>
@@ -102,6 +102,7 @@ export const pageQuery = graphql`
                 alt_text
                 title
                 localFile {
+                    publicURL
                     childImageSharp {
                         fixed(width: 960, height: 500, quality: 100) {
                             ...GatsbyImageSharpFixed_withWebp_tracedSVG
