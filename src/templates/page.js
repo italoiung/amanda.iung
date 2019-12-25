@@ -14,6 +14,7 @@ const Page = ({ data }) => {
     const { wordpressPage: page } = data
     const alt = page.featured_media && page.featured_media.alt_text ? page.featured_media.alt_text : page.title
     const title = page.featured_media && page.featured_media.title ? page.featured_media.title : page.title
+    const source_url = page.featured_media.source_url ? page.featured_media.source_url : null
 
     const image = page.featured_media ? 
     <div className={style.Page_pageImage}>
@@ -24,7 +25,7 @@ const Page = ({ data }) => {
 
     return (
         <Layout style={style}>
-            <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} />
+            <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} image={source_url} />
             <article className={style.Page}>
                 <header>
                     <div className={style.Page_pageMeta}>

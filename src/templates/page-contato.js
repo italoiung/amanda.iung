@@ -53,9 +53,12 @@ export default class Contato extends Component {
         const data = this.props.data
         const { wordpressPage: page } = data
         const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
+        const source_url = page.featured_media.source_url ? page.featured_media.source_url : null
+
+
         return (
             <Layout style={style}>
-                <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} />
+                <Seo title={page.yoast_meta.yoast_wpseo_title} description={page.yoast_meta.yoast_wpseo_metadesc} image={source_url} />
                 <section className={style.MainSection}>
                     <div className={style.MainSection_content}>
                         {parser(page.content)}
@@ -106,6 +109,7 @@ export const pageQuery = graphql`
             yoast_wpseo_metadesc
         }
         featured_media {
+            source_url
             alt_text
             localFile {
                 childImageSharp {

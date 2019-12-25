@@ -17,13 +17,14 @@ const Service = ({ data }) => {
     const { wordpressWpServices: service, site: { siteMetadata: { siteUrl, owner } }, allWordpressWpTrabalhos, wordpressWpServices:{acf: { galeria }} } = data
     const alt = service.featured_media.alt_text ? service.featured_media.alt_text : service.title
     const title = service.featured_media.title ? service.featured_media.title : service.title
+    const source_url = service.featured_media.source_url ? service.featured_media.source_url : null
 
     const trabalhos = allWordpressWpTrabalhos.edges.length ? <Trabalhos data={allWordpressWpTrabalhos} style={style} /> : null
     const images = galeria ? <Gallery galeria={galeria} parent={service.slug} style={style} /> : null
 
     return (
         <Layout style={style}>
-            <Seo title={service.yoast_meta.yoast_wpseo_title} description={service.yoast_meta.yoast_wpseo_metadesc} />
+            <Seo title={service.yoast_meta.yoast_wpseo_title} description={service.yoast_meta.yoast_wpseo_metadesc} image={source_url} />
             <article className={style.Service}>
                 <header>
                     <div className={style.Service_serviceMeta}>

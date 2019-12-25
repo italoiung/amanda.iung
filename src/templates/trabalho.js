@@ -15,10 +15,12 @@ const Trabalho = ({ data }) => {
     const { wordpressWpTrabalhos: trabalho, site: { siteMetadata: { siteUrl, owner } } } = data
     const alt = trabalho.featured_media.alt_text ? trabalho.featured_media.alt_text : trabalho.title
     const title = trabalho.featured_media.title ? trabalho.featured_media.title : trabalho.title
+    const source_url = trabalho.featured_media.source_url ? trabalho.featured_media.source_url : null
 
     return (
         <Layout style={style}>
-            <Seo title={trabalho.yoast_meta.yoast_wpseo_title} description={trabalho.yoast_meta.yoast_wpseo_metadesc} />
+    const source_url = page.featured_media.source_url ? page.featured_media.source_url : null
+            <Seo title={trabalho.yoast_meta.yoast_wpseo_title} description={trabalho.yoast_meta.yoast_wpseo_metadesc} image={source_url} />
             <article className={style.Trabalho}>
                 <header>
                     <div className={style.Trabalho_trabalhoMeta}>
