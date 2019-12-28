@@ -111,7 +111,7 @@ module.exports = {
       options: {
         host: 'https://amanda.iung.me',
         sitemap: 'https://amanda.iung.me/sitemap.xml',
-        policy: [{ userAgent: '*', disallow: ['/'] }]
+        policy: [{ userAgent: '*', allow: '/' }]
       }
     },
     {
