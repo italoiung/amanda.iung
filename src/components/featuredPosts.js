@@ -39,8 +39,8 @@ const FeaturedPosts = ({ style }) => {
     const posts = allWordpressPost.edges.map(post => {
         let alt = post.node.featured_media.alt_text ? post.node.featured_media.alt_text : post.node.title
         let title = post.node.featured_media.title ? post.node.featured_media.title : post.node.title
-        let categories = post.node.categories.map(categorie =>
-            <span key={categorie.id + "-" + post.node.id + "-featured"}>{categorie.name}</span>
+        let categories = post.node.categories.map((categorie, index) =>
+            <span key={categorie.id + "-" + post.node.id + "-featured"}>{(index ? ', ' : '')}{categorie.name}</span>
         )
         return (
             <Link key={post.node.id + "-featured"} to={"/blog/" + post.node.slug}>
