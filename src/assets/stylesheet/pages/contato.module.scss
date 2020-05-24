@@ -41,7 +41,11 @@ main.MainFluid {
                 width: 100vw;
                 height: 160px;
                 
-                bottom: -50%;
+                bottom: -40%;
+                
+                @include rwd(370) {
+                    bottom: -50%;
+                }
 
                 @include sm {
                     bottom: -65%;
@@ -67,6 +71,7 @@ main.MainFluid {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            overflow: hidden;
 
             @include md {
                 flex-wrap: nowrap;
