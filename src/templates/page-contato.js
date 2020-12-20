@@ -28,7 +28,7 @@ export default class Contato extends Component {
         event.preventDefault()
         let loading = document.getElementById('loading')
         loading.style.display = 'block'
-        fetch('https://iung.me/sendmail.php', {
+        fetch('https://viung.me/sendmail.php', {
             method: 'post',
             body: JSON.stringify({ ...this.state }),
             headers: { "Content-Type": "application/json" },

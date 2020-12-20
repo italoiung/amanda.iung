@@ -2,11 +2,11 @@ module.exports = {
   siteMetadata: {
     title: `Amanda Iung`,
     description: `Jornalista Freelancer`,
-    siteUrl: `https://amanda.iung.me`,
+    siteUrl: `https://amanda.viung.me`,
     owner: `@amanda_iung`,
     author: `Ítalo Iung`,
-    image: `https://amanda.iung.me/static/main-full-05abd679c07841e6638bb40aa8030dcc.jpg`,
-    authorUrl: `https://italo.iung.me`,
+    image: `https://amanda.viung.me/static/main-full-05abd679c07841e6638bb40aa8030dcc.jpg`,
+    authorUrl: `https://italo.viung.me`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -34,8 +34,8 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: `adminamanda.iung.me`,
-        protocol: `http`,
+        baseUrl: `adminamanda.viung.me`,
+        protocol: `https`,
         hostingWPCOM: false,
         useACF: true,
         includedRoutes: [
@@ -109,8 +109,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://amanda.iung.me',
-        sitemap: 'https://amanda.iung.me/sitemap.xml',
+        host: 'https://amanda.viung.me',
+        sitemap: 'https://amanda.viung.me/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },

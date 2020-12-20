@@ -47,7 +47,7 @@ const Header = ({ siteTitle, style }) => {
           {siteTitle}
         </Link>
       </h1>
-      <span><a href="mailto:amanda@iung.me">amanda@iung.me</a></span>
+      <span><a href="mailto:amanda@viung.me">amanda@viung.me</a></span>
       <nav>
         <ul>
           {menuItems}
