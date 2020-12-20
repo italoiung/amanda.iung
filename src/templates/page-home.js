@@ -17,7 +17,7 @@ const HomePage = ({ data }) => {
     const { wordpressPage: page, allWordpressPost: dataRecentPosts, mobile } = data
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
     const title = page.featured_media.title ? page.featured_media.title : page.title
-    const publicURL = page.featured_media.localFile.publicURL ? page.featured_media.localFile.publicURL : null
+    const publicURL = page.featured_media ? page.featured_media.localFile.publicURL : null
 
     let sources = [
         mobile.featured_media.localFile.childImageSharp.fixed,

@@ -16,7 +16,7 @@ const Sobre = ({ data }) => {
     const sections = []
     const title = page.featured_media.title ? page.featured_media.title : page.title
     const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
-    const publicURL = page.featured_media.localFile.publicURL ? page.featured_media.localFile.publicURL : null
+    const publicURL = page.featured_media ? page.featured_media.localFile.publicURL : null
 
     for (let i = 1; i < content.length; i++) {
         sections.push(

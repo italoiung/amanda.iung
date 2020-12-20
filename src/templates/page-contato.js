@@ -53,7 +53,7 @@ export default class Contato extends Component {
         const data = this.props.data
         const { wordpressPage: page } = data
         const alt = page.featured_media.alt_text ? page.featured_media.alt_text : page.title
-        const publicURL = page.featured_media.localFile.publicURL ? page.featured_media.localFile.publicURL : null
+        const publicURL = page.featured_media ? page.featured_media.localFile.publicURL : null
 
 
         return (
